@@ -129,6 +129,19 @@ body {
   line-height: 1;
 }
 
+.btn-github {
+  background: #21262d;
+  border-color: #30363d;
+  color: #e6edf3;
+  text-decoration: none;
+}
+
+.btn-github:hover {
+  background: #30363d;
+  border-color: #8b949e;
+  color: #ffffff;
+}
+
 /* ── File Tabs Bar ───────────────────────────────── */
 .tab-bar {
   display: flex;
