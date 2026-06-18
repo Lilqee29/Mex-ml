@@ -30,8 +30,8 @@ if (args[0] === '--help' || args[0] === '-h') {
   console.log('');
   console.log('  Usage:');
   console.log('    mex <file.mx>                   Run a .mx file');
-  console.log('    mex --generate <file.mx>        Generate TensorFlow.js code');
-  console.log('    mex --python <file.mx>          Generate Python/TensorFlow code');
+  console.log('    mex --generate <file.mx>        Generate TF.js → export/');
+  console.log('    mex --python <file.mx>          Generate Python → export/');
   console.log('    mex --show-tf <file.mx>         Show TF.js equivalent alongside MEX');
   console.log('    mex --stats <file.mx>           Show compression statistics');
   console.log('    mex --run "code here"            Run inline code');
@@ -87,8 +87,8 @@ if (args.length === 0) {
   console.log('');
   console.log('  Usage:');
   console.log('    mex <file.mx>                   Run a .mx file');
-  console.log('    mex --generate <file.mx>        Generate TensorFlow.js code');
-  console.log('    mex --python <file.mx>          Generate Python/TensorFlow code');
+  console.log('    mex --generate <file.mx>        Generate TF.js → export/');
+  console.log('    mex --python <file.mx>          Generate Python → export/');
   console.log('    mex --show-tf <file.mx>         Show TF.js equivalent alongside MEX');
   console.log('    mex --stats <file.mx>           Show compression statistics');
   console.log('    mex --run "code here"            Run inline code');
@@ -1121,10 +1121,21 @@ try {
   const ast = parse(tokens);
 
   if (generateMode) {
+    // Create export directory if it doesn't exist
+    const exportDir = path.join(process.cwd(), 'export');
+    if (!fs.existsSync(exportDir)) {
+      fs.mkdirSync(exportDir, { recursive: true });
+    }
+    const baseName = path.basename(args[1] || 'output', '.mx');
+
     if (generateLanguage === 'python') {
       // Generate Python/TensorFlow code
       const { generatePython } = require('./lib/python-generator');
       const pythonCode = generatePython(ast);
+      const outPath = path.join(exportDir, `${baseName}_python.py`);
+      fs.writeFileSync(outPath, pythonCode, 'utf-8');
+      console.log(`  ✅ Python code exported to: export/${baseName}_python.py`);
+      console.log('');
       console.log(pythonCode);
     } else if (generateLanguage === 'show-tf') {
       // Show MEX code with TF.js equivalents as comments
@@ -1173,6 +1184,10 @@ try {
     } else {
       // Generate TensorFlow.js code
       const tfjsCode = generate(ast);
+      const outPath = path.join(exportDir, `${baseName}_tfjs.js`);
+      fs.writeFileSync(outPath, tfjsCode, 'utf-8');
+      console.log(`  ✅ TensorFlow.js code exported to: export/${baseName}_tfjs.js`);
+      console.log('');
       console.log(tfjsCode);
     }
   } else {

@@ -1,6 +1,6 @@
 {
   "name": "mex-ml",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A beginner-friendly ML learning language that teaches machine learning through clean, readable code. Zero dependencies.",
   "main": "mex.js",
   "bin": {
