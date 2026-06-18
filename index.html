@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEX — Machine Learning Language</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --text: #e8e8ed;
+            --text-dim: #9090a0;
+            --accent: #ff6b35;
+            --accent-2: #00d4aa;
+            --accent-3: #7c5cfc;
+            --border: #1e1e28;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Nav ─────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover { border-color: var(--accent); }
+
+        /* ── Hero ────────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(124, 92, 252, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent-2);
+            margin-bottom: 2rem;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-2);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 500px;
+            margin-bottom: 3rem;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Code Preview ────────────────────────────── */
+        .preview {
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 700px;
+            animation: fadeUp 0.6s ease 0.4s both;
+        }
+
+        .preview-window {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preview-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .preview-dot:nth-child(1) { background: #ff5f57; }
+        .preview-dot:nth-child(2) { background: #febc2e; }
+        .preview-dot:nth-child(3) { background: #28c840; }
+
+        .preview-title {
+            margin-left: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .preview pre {
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .kw { color: #ff6b35; }
+        .fn { color: #ff4d6a; }
+        .str { color: #00d4aa; }
+        .num { color: #7c5cfc; }
+        .cmt { color: #505060; }
+
+        /* ── Features ────────────────────────────────── */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-header p {
+            color: var(--text-dim);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ── Lessons ─────────────────────────────────── */
+        .lessons {
+            padding: 6rem 2rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lessons-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lessons-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .lessons-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lessons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .lesson {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .lesson:hover {
+            border-color: var(--accent);
+        }
+
+        .lesson-num {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-info h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+        }
+
+        .lesson-info p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* ── CTA ─────────────────────────────────────── */
+        .cta {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        /* ── Footer ──────────────────────────────────── */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ── Responsive ──────────────────────────────── */
+        @media (max-width: 600px) {
+            .nav-links a:not(.btn) { display: none; }
+            .hero-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">MEX</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#lessons-section">Lessons</a>
+            <a href="docs/index.html">Docs</a>
+            <a href="docs/index.html" class="btn">Get Started →</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">v1.0 — Zero Dependencies</div>
+        <h1>Learn <span>ML</span><br>by Doing</h1>
+        <p class="subtitle">
+            A beginner-friendly language that teaches machine learning through a clean, readable DSL.
+        </p>
+        <div class="hero-buttons">
+            <a href="docs/index.html" class="btn">Read the Docs →</a>
+            <a href="#features" class="btn btn-outline">See Features</a>
+        </div>
+
+        <div class="preview">
+            <div class="preview-window">
+                <div class="preview-header">
+                    <div class="preview-dot"></div>
+                    <div class="preview-dot"></div>
+                    <div class="preview-dot"></div>
+                    <span class="preview-title">my_model.mx</span>
+                </div>
+                <pre><code><span class="cmt">## 5 lines to machine learning</span>
+
+<span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">3</span>), (<span class="num">2</span>, <span class="num">5</span>), (<span class="num">3</span>, <span class="num">7</span>), (<span class="num">4</span>, <span class="num">9</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">100</span> epochs
+<span class="kw">predict</span> <span class="num">5</span>   <span class="cmt"># → 11</span></code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-header">
+            <h2>Why MEX?</h2>
+            <p>Everything you need to learn ML, nothing you don't.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>Zero Dependencies</h3>
+                <p>Built-in neural network engine. No npm install, no native modules, no headaches.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📖</div>
+                <h3>Reads Like English</h3>
+                <p>Keywords match TensorFlow.js. <code>data points</code>, <code>train</code>, <code>predict</code>.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>5 Lines to ML</h3>
+                <p>Load data, create model, train, predict. Real machine learning in seconds.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎓</div>
+                <h3>6 Progressive Lessons</h3>
+                <p>Unlock lessons as you learn. From data basics to neural networks.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏆</div>
+                <h3>Achievements</h3>
+                <p>Earn badges as you progress. Stay motivated with gamified learning.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔗</div>
+                <h3>TF.js Bridge</h3>
+                <p>See equivalent TensorFlow.js code. Skills transfer directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="lessons" id="lessons-section">
+        <div class="lessons-inner">
+            <div class="lessons-header">
+                <h2>6 Lessons to ML Mastery</h2>
+                <p>Each lesson unlocks the next. Learn at your own pace.</p>
+            </div>
+            <div class="lessons-list">
+                <div class="lesson">
+                    <div class="lesson-num">1</div>
+                    <div class="lesson-info">
+                        <h4>What is Data?</h4>
+                        <p>Features, labels, datasets</p>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-num">2</div>
+                    <div class="lesson-info">
+                        <h4>Finding Patterns</h4>
+                        <p>Linear regression, training</p>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-num">3</div>
+                    <div class="lesson-info">
+                        <h4>Classification</h4>
+                        <p>Categories, accuracy</p>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-num">4</div>
+                    <div class="lesson-info">
+                        <h4>Neural Networks</h4>
+                        <p>Layers, activations</p>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-num">5</div>
+                    <div class="lesson-info">
+                        <h4>Real Data</h4>
+                        <p>Cleaning, normalization</p>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-num">6</div>
+                    <div class="lesson-info">
+                        <h4>Advanced</h4>
+                        <p>Overfitting, regularization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Start Learning ML Today</h2>
+        <p>No setup. No dependencies. Just run and learn.</p>
+        <a href="docs/index.html" class="btn">Open Documentation →</a>
+    </section>
+
+    <footer>
+        <p>MEX — Built for learning. Powered by <a href="docs/index.html">Node.js</a>.</p>
+    </footer>
+</body>
+</html>

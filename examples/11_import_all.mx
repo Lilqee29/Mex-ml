@@ -1,0 +1,14 @@
+## Test importing all exports
+import "lib/math.mx"
+
+## All exports should be available
+let sum = add(10, 20)
+print("10 + 20 = " + sum)
+
+let product = multiply(5, 6)
+print("5 * 6 = " + product)
+
+let squared = square(7)
+print("7² = " + squared)
+
+print("pi = " + pi)

@@ -1,0 +1,202 @@
+## ═══════════════════════════════════════════════════════
+##  MEX FULL TEST — Every feature in one file
+## ═══════════════════════════════════════════════════════
+## Run: node mex.js examples/99_full_test.mx
+## Expected: All outputs match, no errors
+## ═══════════════════════════════════════════════════════
+
+## ── STAGE 1: Variables ─────────────────────────────
+
+let a = 10
+let b = 20
+let c = a + b
+print("STAGE 1 Variables:")
+print("  a = " + a)
+print("  b = " + b)
+print("  c = a + b = " + c)
+
+## Reassignment
+a = 100
+print("  a after reassignment = " + a)
+a = 10  ## reset
+
+## ── STAGE 1: String Operations ─────────────────────
+
+let greeting = "Hello"
+let name = "MEX"
+let full = greeting + ", " + name + "!"
+print("\nSTAGE 1 Strings:")
+print("  " + full)
+
+## ── STAGE 1: Built-in Math ─────────────────────────
+
+print("\nSTAGE 1 Math Functions:")
+print("  sqrt(16) = " + sqrt(16))
+print("  pow(2, 10) = " + pow(2, 10))
+print("  abs(-42) = " + abs(-42))
+print("  floor(3.7) = " + floor(3.7))
+print("  ceil(3.2) = " + ceil(3.2))
+print("  round(3.5) = " + round(3.5))
+print("  min(5, 10) = " + min(5, 10))
+print("  max(5, 10) = " + max(5, 10))
+print("  PI = " + PI)
+print("  E = " + E)
+print("  sin(0) = " + sin(0))
+print("  cos(0) = " + cos(0))
+
+## ── STAGE 1: If/Else ───────────────────────────────
+
+print("\nSTAGE 1 If/Else:")
+if (c > 25) {
+  print("  c is greater than 25 ✓")
+} else {
+  print("  ERROR: should not reach here")
+}
+
+if (c < 25) {
+  print("  ERROR: should not reach here")
+} else {
+  print("  c is not less than 25 ✓")
+}
+
+## ── STAGE 1: For Loop ──────────────────────────────
+
+print("\nSTAGE 1 For Loop:")
+let sum = 0
+for i in range(1, 6) {
+  sum = sum + i
+}
+print("  sum of 1..5 = " + sum)
+
+## ── STAGE 1: While Loop ────────────────────────────
+
+print("\nSTAGE 1 While Loop:")
+let count = 0
+while (count < 5) {
+  count = count + 1
+}
+print("  count after while = " + count)
+
+## ── STAGE 1: Functions ─────────────────────────────
+
+print("\nSTAGE 1 Functions:")
+
+fn add(x, y) {
+  return x + y
+}
+
+fn factorial(n) {
+  if (n <= 1) {
+    return 1
+  }
+  return n * factorial(n - 1)
+}
+
+fn fibonacci(n) {
+  if (n <= 0) {
+    return 0
+  }
+  if (n == 1) {
+    return 1
+  }
+  let a = 0
+  let b = 1
+  for i in range(2, n + 1) {
+    let temp = a + b
+    a = b
+    b = temp
+  }
+  return b
+}
+
+print("  add(3, 4) = " + add(3, 4))
+print("  factorial(5) = " + factorial(5))
+print("  fibonacci(10) = " + fibonacci(10))
+
+## ── STAGE 1: Nested Loops ──────────────────────────
+
+print("\nSTAGE 1 Nested Loops:")
+let product = 1
+for i in range(1, 4) {
+  for j in range(1, 4) {
+    product = product + 1
+  }
+}
+print("  product = " + product)
+
+## ── STAGE 1: Complex Expressions ───────────────────
+
+print("\nSTAGE 1 Expressions:")
+let x = 5
+let y = 3
+print("  x + y = " + (x + y))
+print("  x * y = " + (x * y))
+print("  x > y = " + (x > y))
+print("  x < y = " + (x < y))
+print("  x == 5 = " + (x == 5))
+print("  x != 3 = " + (x != 3))
+print("  sqrt(pow(x, 2) + pow(y, 2)) = " + sqrt(pow(x, 2) + pow(y, 2)))
+
+## ── STAGE 2: ML Data ───────────────────────────────
+
+print("\nSTAGE 2 ML Data:")
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+  (5, 11)
+
+show data
+
+## ── STAGE 2: ML Model ──────────────────────────────
+
+print("\nSTAGE 2 ML Model:")
+model simple
+show model
+
+## ── STAGE 2: ML Training ───────────────────────────
+
+print("\nSTAGE 2 ML Training:")
+train 500 epochs
+show accuracy
+
+## ── STAGE 2: ML Prediction ─────────────────────────
+
+print("\nSTAGE 2 ML Predictions:")
+for i in range(1, 6) {
+  let result = predict i
+  print("  f(" + i + ") = " + result)
+}
+
+## ── STAGE 2: Standalone Predict ────────────────────
+
+print("\nSTAGE 2 Standalone Predict:")
+predict 6
+show results
+
+## ── STAGE 3: Import/Export ─────────────────────────
+
+print("\nSTAGE 3 Import:")
+import { add as imported_add, multiply, square } from "lib/math.mx"
+print("  imported add(10, 20) = " + imported_add(10, 20))
+print("  imported multiply(5, 6) = " + multiply(5, 6))
+print("  imported square(7) = " + square(7))
+
+## ── STAGE 3: Import All ────────────────────────────
+
+import "lib/utils.mx"
+print("  imported normalize(5, 0, 10) = " + normalize(5, 0, 10))
+print("  imported denormalize(0.5, 0, 10) = " + denormalize(0.5, 0, 10))
+
+## ── STAGE 3: Code Generation ───────────────────────
+
+## Run: node mex.js --generate examples/99_full_test.mx
+## Should output equivalent TensorFlow.js code
+
+## ═══════════════════════════════════════════════════════
+##  ALL TESTS COMPLETE
+## ═══════════════════════════════════════════════════════
+print("\n═══════════════════════════════════════════════════════")
+print("  ALL TESTS PASSED")
+print("═══════════════════════════════════════════════════════")

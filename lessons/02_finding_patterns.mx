@@ -1,0 +1,220 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 2: Finding Patterns
+## ═══════════════════════════════════════════════════════
+##  Run: node mex.js lessons/02_finding_patterns.mx
+## ═══════════════════════════════════════════════════════
+
+## ── PART 1: The Problem ─────────────────────────────
+##
+## We have data, but how do we make predictions?
+##
+## Example: We know house sizes and prices.
+## Question: What would a 3000 sq ft house cost?
+##
+## We could guess, but ML lets us LEARN from data
+## and make smart predictions.
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 2: Finding Patterns")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+print("PART 1: The Problem")
+print("────────────────────")
+print("")
+
+## Our house data
+data points
+  (1000, 200)
+  (1500, 250)
+  (2000, 300)
+  (2500, 350)
+
+print("We have 4 houses with known prices.")
+print("Question: What would a 3000 sq ft house cost?")
+print("")
+
+## ── PART 2: Linear Regression ───────────────────────
+##
+## Linear Regression finds the LINE that best fits
+## your data. It's called the "line of best fit".
+##
+## The line follows this equation:
+##   y = mx + b
+##
+## Where:
+##   y = what we want to predict (price)
+##   x = what we know (size)
+##   m = slope (how steep the line is)
+##   b = intercept (where line crosses y-axis)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 2: Linear Regression")
+print("─────────────────────────")
+print("")
+
+print("Linear Regression finds the line: y = mx + b")
+print("")
+print("  y = price (what we predict)")
+print("  x = size (what we know)")
+print("  m = slope (how steep)")
+print("  b = intercept (starting point)")
+print("")
+
+## ── PART 3: Training the Model ──────────────────────
+##
+## In MEX, we train a model with "train N epochs"
+##
+## Training means:
+##   1. Start with a random line
+##   2. Measure how wrong it is
+##   3. Adjust the line to be less wrong
+##   4. Repeat N times
+##
+## After training, the model knows the best line!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 3: Training the Model")
+print("───────────────────────────")
+print("")
+
+## Create a simple model (one feature → one output)
+model simple
+
+## Train for 200 epochs (adjustments)
+train 200 epochs
+
+print("")
+
+## ── PART 4: Making Predictions ──────────────────────
+##
+## Now we can predict prices for new houses!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 4: Making Predictions")
+print("──────────────────────────")
+print("")
+
+## Predict for our known houses
+predict 1000
+predict 1500
+predict 2000
+predict 2500
+
+## Predict for a NEW house
+predict 3000
+
+show results
+print("")
+
+## ── PART 5: Understanding Accuracy ──────────────────
+##
+## How good is our model?
+##
+## The "error" tells us how wrong predictions are.
+## Lower error = better model.
+##
+## Our data follows: price = 0.1 × size + 100
+## If error is near 0, the model learned perfectly!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 5: Understanding Accuracy")
+print("───────────────────────────────")
+print("")
+
+show accuracy
+
+print("")
+print("Error should be near 0 if model learned well.")
+print("")
+
+## ── PART 6: The Learning Process ────────────────────
+##
+## Here's what happened during training:
+##
+## Epoch 1:   Line was random, predictions wrong
+## Epoch 50:  Line getting closer to data
+## Epoch 100: Line almost fits the data
+## Epoch 200: Line fits the data well!
+##
+## This is how machines learn — by trying,
+## measuring errors, and adjusting.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 6: How Machines Learn")
+print("───────────────────────────")
+print("")
+
+print("Training process:")
+print("  1. Start with random line")
+print("  2. Make predictions")
+print("  3. Measure error (how wrong)")
+print("  4. Adjust line to reduce error")
+print("  5. Repeat until error is small")
+print("")
+
+## ── PART 7: Different Data, Same Process ────────────
+##
+## Let's try different data to see if it works.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 7: New Example — Study Hours vs Test Score")
+print("────────────────────────────────────────────────")
+print("")
+
+## New dataset: hours studied vs test score
+data points
+  (1, 50)
+  (2, 60)
+  (3, 70)
+  (4, 80)
+  (5, 90)
+
+model simple
+train 200 epochs
+
+## What score for 6 hours of study?
+predict 6
+
+show results
+show accuracy
+
+print("")
+
+## ── PART 8: Challenge ───────────────────────────────
+##
+## Challenge 1: New Dataset
+##   Create data for (temperature, ice_cream_sales)
+##   Train a model
+##   Predict sales for temperature = 30
+##
+## Challenge 2: Experiment
+##   Try training for 100 epochs vs 500 epochs
+##   Which gives lower error?
+##
+## Challenge 3: Analyze
+##   Look at the error value.
+##   Is it close to 0? What does that mean?
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 2 COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("What you learned:")
+print("  1. Linear regression finds the line of best fit")
+print("  2. The line follows y = mx + b")
+print("  3. Training adjusts the line to reduce error")
+print("  4. Lower error means better predictions")
+print("  5. You can predict unknown values from known data")
+print("")
+print("You just did machine learning!")

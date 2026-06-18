@@ -1,0 +1,69 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 5 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 5 CHALLENGE: Real Data")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Clean This Data ───────────────────
+##
+## Data with a missing value:
+##   (10, 20)
+##   (15, 25)
+##   (20, ??)  ← missing!
+##   (25, 35)
+##
+## Fill in the missing value (use 30) and train.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: Clean This Data")
+print("─────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 2: Normalize ─────────────────────────
+##
+## Normalize these values to 0-1 range:
+##   Values: 100, 200, 300, 400
+##   Min: 100, Max: 400
+##
+## What is 250 normalized?
+## What is 350 normalized?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Normalize")
+print("──────────────────────")
+
+## YOUR CODE HERE:
+## let normalized_250 = (250 - 100) / (400 - 100)
+## print("250 normalized: " + normalized_250)
+
+print("")
+
+## ── CHALLENGE 3: Real Dataset ──────────────────────
+##
+## Create a dataset with:
+##   - At least 6 data points
+│   - Features with different scales
+│   - At least 2 features
+##
+## Normalize the data and train.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 3: Real Dataset")
+print("──────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

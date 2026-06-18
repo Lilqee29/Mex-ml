@@ -1,0 +1,15 @@
+## Lesson 5: Prediction
+## A trained model can predict new values.
+
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+
+model simple
+
+train 300 epochs
+
+predict 5
+show results

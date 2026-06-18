@@ -1,0 +1,118 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 2 — SOLUTIONS
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 2 SOLUTIONS")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Ice Cream Sales ────────────────────
+
+print("CHALLENGE 1: Ice Cream Sales")
+print("─────────────────────────────")
+
+data points
+  (20, 50)
+  (25, 80)
+  (30, 110)
+  (35, 140)
+
+model simple
+train 300 epochs
+
+predict 40
+
+show results
+show accuracy
+
+print("")
+
+## ── CHALLENGE 2: Compare Training ───────────────────
+
+print("CHALLENGE 2: Compare Training")
+print("──────────────────────────────")
+
+## Model A: 100 epochs
+print("Model A: 100 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+  (4, 8)
+
+model simple
+train 100 epochs
+show accuracy
+
+print("")
+
+## Model B: 500 epochs
+print("Model B: 500 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+  (4, 8)
+
+model simple
+train 500 epochs
+show accuracy
+
+print("")
+print("Answer: Model B (500 epochs) should have lower error.")
+print("More training = more adjustments = better fit.")
+
+print("")
+
+## ── CHALLENGE 3: Non-Linear Pattern ─────────────────
+
+print("CHALLENGE 3: Non-Linear Pattern")
+print("─────────────────────────────────")
+
+data points
+  (2, 8)
+  (5, 12)
+  (8, 3)
+  (12, 6)
+
+model simple
+train 500 epochs
+
+show accuracy
+
+print("")
+print("Answer: The error will be high because the data")
+print("is NOT linear. Linear regression only works well")
+print("for linear patterns.")
+
+print("")
+
+## ── CHALLENGE 4: Design Your Own ────────────────────
+
+print("CHALLENGE 4: Design Your Own")
+print("─────────────────────────────")
+
+## Example: Experience vs Salary
+data points
+  (1, 30)
+  (3, 45)
+  (5, 60)
+  (10, 90)
+
+model simple
+train 300 epochs
+
+predict 7
+
+show results
+show accuracy
+
+print("")
+print("Finding: More experience = higher salary (linear)")
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  SOLUTIONS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

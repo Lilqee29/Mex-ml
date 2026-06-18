@@ -1,0 +1,24 @@
+## ML with Phase 3 — predicting y = 2x + 1
+
+## Data
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+  (5, 11)
+
+## Model
+model simple
+
+## Train with more epochs
+train 500 epochs
+
+## Predict with loop
+for i in range(1, 6) {
+  let result = predict i
+  print("f(" + i + ") = " + result)
+}
+
+## Show results
+show accuracy

@@ -1,0 +1,192 @@
+## ═══════════════════════════════════════════════════════
+##  MEX DATA LIBRARY — DataFrame-like operations
+## ═══════════════════════════════════════════════════════
+## Usage: import "lib/data.mx"
+
+## Load CSV and return as DataFrame
+export fn load_csv(filename) {
+  ## This is handled by the interpreter
+  return filename
+}
+
+## Get column by name
+export fn get_column(df, col_name) {
+  let idx = 0
+  for i in range(0, len(df.keys)) {
+    if (df.keys[i] == col_name) {
+      idx = i
+    }
+  }
+  let result = []
+  for i in range(0, len(df.raw)) {
+    result = result + [df.raw[i][idx]]
+  }
+  return result
+}
+
+## Get multiple columns
+export fn get_columns(df, col_names) {
+  let indices = []
+  for c in range(0, len(col_names)) {
+    for i in range(0, len(df.keys)) {
+      if (df.keys[i] == col_names[c]) {
+        indices = indices + [i]
+      }
+    }
+  }
+  let result = []
+  for i in range(0, len(df.raw)) {
+    let row = []
+    for j in range(0, len(indices)) {
+      row = row + [df.raw[i][indices[j]]]
+    }
+    result = result + [row]
+  }
+  return result
+}
+
+## Filter rows by condition
+export fn filter_rows(df, fn condition) {
+  let result = []
+  for i in range(0, len(df.raw)) {
+    if (condition(df.raw[i])) {
+      result = result + [df.raw[i]]
+    }
+  }
+  return result
+}
+
+## Sort by column
+export fn sort_by_column(df, col_name, ascending) {
+  let idx = 0
+  for i in range(0, len(df.keys)) {
+    if (df.keys[i] == col_name) {
+      idx = i
+    }
+  }
+  let rows = [...df.raw]
+  ## Simple bubble sort
+  for i in range(0, len(rows)) {
+    for j in range(0, len(rows) - 1) {
+      let swap = false
+      if (ascending) {
+        swap = rows[j][idx] > rows[j + 1][idx]
+      } else {
+        swap = rows[j][idx] < rows[j + 1][idx]
+      }
+      if (swap) {
+        let temp = rows[j]
+        rows[j] = rows[j + 1]
+        rows[j + 1] = temp
+      }
+    }
+  }
+  return rows
+}
+
+## Get unique values in column
+export fn unique_values(df, col_name) {
+  let col = get_column(df, col_name)
+  let seen = []
+  let result = []
+  for i in range(0, len(col)) {
+    let found = false
+    for j in range(0, len(seen)) {
+      if (seen[j] == col[i]) {
+        found = true
+      }
+    }
+    if (not found) {
+      seen = seen + [col[i]]
+      result = result + [col[i]]
+    }
+  }
+  return result
+}
+
+## Count occurrences
+export fn value_counts(df, col_name) {
+  let col = get_column(df, col_name)
+  let counts = {}
+  for i in range(0, len(col)) {
+    let val = col[i]
+    if (val in counts) {
+      counts[val] = counts[val] + 1
+    } else {
+      counts[val] = 1
+    }
+  }
+  return counts
+}
+
+## Summary statistics
+export fn describe(df, col_name) {
+  let col = get_column(df, col_name)
+  let nums = []
+  for i in range(0, len(col)) {
+    if (type(col[i]) == 'number') {
+      nums = nums + [col[i]]
+    }
+  }
+  return {
+    count: len(nums),
+    mean: mean(nums),
+    min: min(nums),
+    max: max(nums),
+    std: std(nums)
+  }
+}
+
+## Head (first n rows)
+export fn head(df, n) {
+  let result = []
+  let limit = min([n, len(df.raw)])
+  for i in range(0, limit) {
+    result = result + [df.raw[i]]
+  }
+  return result
+}
+
+## Tail (last n rows)
+export fn tail(df, n) {
+  let result = []
+  let start = max([0, len(df.raw) - n])
+  for i in range(start, len(df.raw)) {
+    result = result + [df.raw[i]]
+  }
+  return result
+}
+
+## Print DataFrame summary
+export fn info(df) {
+  print('DataFrame: ' + len(df.raw) + ' rows x ' + len(df.keys) + ' columns')
+  print('Columns: ' + df.keys)
+  for i in range(0, len(df.keys)) {
+    let col = get_column(df, df.keys[i])
+    let types = []
+    for j in range(0, min([5, len(col)])) {
+      types = types + [type(col[j])]
+    }
+    print('  ' + df.keys[i] + ': ' + types[0])
+  }
+}
+
+## Sample n random rows
+export fn sample(df, n) {
+  let result = []
+  let indices = []
+  for i in range(0, len(df.raw)) {
+    indices = indices + [i]
+  }
+  ## Fisher-Yates shuffle
+  for i in range(len(indices) - 1, 0) {
+    let j = floor(random() * (i + 1))
+    let temp = indices[i]
+    indices[i] = indices[j]
+    indices[j] = temp
+  }
+  for i in range(0, min([n, len(indices)])) {
+    result = result + [df.raw[indices[i]]]
+  }
+  return result
+}

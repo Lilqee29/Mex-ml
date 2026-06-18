@@ -1,0 +1,30 @@
+## Test Phase 3 features
+
+## Variables
+let x = 10
+let y = 20
+let z = x + y
+
+## Print variables
+print(z)
+
+## For loop
+for i in range(0, 5) {
+  print(i)
+}
+
+## If/else
+if (z > 25) {
+  print("z is big")
+} else {
+  print("z is small")
+}
+
+## Function
+fn add(a, b) {
+  return a + b
+}
+
+## Call function
+let result = add(5, 7)
+print(result)

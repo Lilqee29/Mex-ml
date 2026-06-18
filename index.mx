@@ -1,0 +1,209 @@
+## index.mx — Comprehensive MEX Example
+## Showcasing: data, models, training, prediction, functions, arrays
+
+## ============================================
+## PART 1: Basic Math & Functions
+## ============================================
+
+import "lib/math.mx"
+
+## Basic operations
+let a = 10
+let b = 20
+let sum = add(a, b)
+let product = multiply(a, b)
+let squared = square(5)
+
+print("=== Math Operations ===")
+print("a = " + a)
+print("b = " + b)
+print("add(a, b) = " + sum)
+print("multiply(a, b) = " + product)
+print("square(5) = " + squared)
+print("pi = " + pi)
+
+## ============================================
+## PART 2: Arrays & Higher-Order Functions
+## ============================================
+
+print("\n=== Arrays ===")
+
+let numbers = [1, 2, 3, 4, 5]
+print("Original array: " + numbers)
+
+## Array operations
+let reversed = reverse(numbers)
+print("Reversed: " + reversed)
+
+let unique_nums = unique([1, 1, 2, 2, 3, 3])
+print("Unique: " + unique_nums)
+
+let flattened = flatten([[1, 2], [3, 4], [5, 6]])
+print("Flattened: " + flattened)
+
+## Higher-order functions
+let doubled = map(numbers, fn(x) { return x * 2 })
+print("Doubled: " + doubled)
+
+let evens = filter(numbers, fn(x) { return x % 2 == 0 })
+print("Evens: " + evens)
+
+let total = reduce(numbers, fn(a, b) { return a + b }, 0)
+print("Sum: " + total)
+
+## ============================================
+## PART 3: Statistics
+## ============================================
+
+print("\n=== Statistics ===")
+
+let stats_data = [10, 20, 30, 40, 50]
+print("Data: " + stats_data)
+print("Mean: " + mean(stats_data))
+print("Std: " + std(stats_data))
+print("Variance: " + variance(stats_data))
+print("Median: " + median(stats_data))
+
+## ============================================
+## PART 4: String Operations
+## ============================================
+
+print("\n=== Strings ===")
+
+let greeting = "Hello, MEX!"
+print("Original: " + greeting)
+print("Uppercase: " + upper(greeting))
+print("Lowercase: " + lower(greeting))
+print("Length: " + len(greeting))
+
+let words = split("MEX is awesome", " ")
+print("Words: " + words)
+
+let joined = join(words, "-")
+print("Joined: " + joined)
+
+## ============================================
+## PART 5: Linear Regression (ML)
+## ============================================
+
+print("\n=== Linear Regression ===")
+
+## Data: (hours studied, exam score)
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+  (4, 8)
+  (5, 10)
+
+## Create model
+model simple
+
+## Train
+train 200 epochs
+
+## Predict
+let prediction = predict(6)
+print("Prediction for 6: " + prediction)
+
+## ============================================
+## PART 6: k-NN Algorithm (Simplified)
+## ============================================
+
+print("\n=== k-NN Algorithm ===")
+
+## Simple prediction using model
+model sequential
+dense 8 relu
+dense 1 sigmoid
+train 100 epochs
+
+let knn_result = predict([4, 7])
+print("Prediction for [4, 7]: " + knn_result)
+
+## ============================================
+## PART 7: Normalization
+## ============================================
+
+print("\n=== Normalization ===")
+
+let raw_data = [10, 20, 30, 40, 50]
+print("Raw data: " + raw_data)
+
+let normalized = normalize_array(raw_data)
+print("Normalized: " + normalized)
+
+let denormalized = denormalize_array(normalized, 10, 50)
+print("Denormalized: " + denormalized)
+
+## ============================================
+## PART 8: Data Manipulation
+## ============================================
+
+print("\n=== Data Manipulation ===")
+
+let names = ["Alice", "Bob", "Charlie", "Diana", "Eve"]
+let ages = [25, 30, 35, 28, 32]
+let scores = [85, 92, 78, 95, 88]
+
+print("Names: " + names)
+print("Ages: " + ages)
+print("Scores: " + scores)
+
+## Statistics
+print("Average age: " + mean(ages))
+print("Average score: " + mean(scores))
+
+## Filter: scores above 90
+let high_scorers = filter(scores, fn(s) { return s > 90 })
+print("High scores (>90): " + high_scorers)
+
+## Map: add bonus points
+let bonus_scores = map(scores, fn(s) { return s + 5 })
+print("Bonus scores: " + bonus_scores)
+
+## ============================================
+## PART 9: Control Flow
+## ============================================
+
+print("\n=== Control Flow ===")
+
+## For loop
+print("Counting:")
+for i in range(0, 5) {
+  print("  " + i)
+}
+
+## While loop
+let count = 0
+while (count < 3) {
+  print("While loop: " + count)
+  count = count + 1
+}
+
+## If/else
+let temperature = 25
+if (temperature > 20) {
+  print("Weather: Warm (" + temperature + "°C)")
+} else {
+  print("Weather: Cold (" + temperature + "°C)")
+}
+
+## ============================================
+## PART 10: Summary
+## ============================================
+
+print("\n=== Summary ===")
+print("This example demonstrated:")
+print("  1. Math operations and functions")
+print("  2. Arrays and higher-order functions")
+print("  3. Statistics calculations")
+print("  4. String operations")
+print("  5. Linear regression")
+print("  6. Neural network classification")
+print("  7. Normalization")
+print("  8. Data manipulation")
+print("  9. Control flow (for, while, if)")
+print("")
+print("MEX makes ML accessible!")
+print("Convert to Python with: mex --python index.mx")

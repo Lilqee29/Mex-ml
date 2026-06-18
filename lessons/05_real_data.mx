@@ -1,0 +1,270 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 5: Real Data
+## ═══════════════════════════════════════════════════════
+##  Run: node mex.js lesson 5
+## ═══════════════════════════════════════════════════════
+
+## ── PART 1: Real Data is Messy ─────────────────────
+##
+## So far, we've used clean, perfect data.
+## Real data is MESSY!
+##
+## Problems with real data:
+##   - Missing values (empty cells)
+##   - Wrong values (typos, errors)
+##   - Different scales (age: 0-100, salary: 0-1000000)
+##   - Duplicate rows
+##   - Extra spaces, wrong formats
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 5: Real Data")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+print("PART 1: Real Data is Messy")
+print("───────────────────────────")
+print("")
+
+print("So far, we used clean data.")
+print("Real data has problems:")
+print("  - Missing values")
+print("  - Wrong values (typos)")
+print("  - Different scales")
+print("  - Duplicates")
+print("")
+
+## ── PART 2: Data Scales ────────────────────────────
+##
+## Problem: Features have DIFFERENT SCALES.
+##
+## Example:
+##   Age: 0-100
+##   Salary: 0-1,000,000
+##
+## Salary is 10,000x larger than age!
+## The network will think salary is more important.
+##
+## Solution: NORMALIZE data to same scale (0-1).
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 2: Data Scales")
+print("────────────────────")
+print("")
+
+print("Problem: Features have DIFFERENT SCALES")
+print("")
+print("  Age: 0-100")
+print("  Salary: 0-1,000,000")
+print("")
+print("Salary dominates! Network thinks it's more important.")
+print("")
+
+## ── PART 3: Normalization ──────────────────────────
+##
+## Normalization scales all features to 0-1 range.
+##
+## Formula:
+##   normalized = (value - min) / (max - min)
+##
+## Example:
+##   Age range: 0-100
+##   Value 50 → normalized: (50-0)/(100-0) = 0.5
+##
+## Now all features are on the same scale!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 3: Normalization")
+print("──────────────────────")
+print("")
+
+print("Formula: normalized = (value - min) / (max - min)")
+print("")
+print("Example:")
+print("  Age range: 0-100")
+print("  Value 50 → (50-0)/(100-0) = 0.5")
+print("  Value 80 → (80-0)/(100-0) = 0.8")
+print("")
+print("Now all features are 0-1 range!")
+print("")
+
+## ── PART 4: Example — Normalized Data ──────────────
+##
+## Let's normalize our house data and train.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 4: Example — Normalized Data")
+print("──────────────────────────────────")
+print("")
+
+print("Original data: house sizes (1000-2500)")
+print("Normalized: all values 0-1")
+print("")
+
+data points
+  (0, 0)
+  (0.33, 0.33)
+  (0.67, 0.67)
+  (1, 1)
+
+model simple
+train 300 epochs
+
+predict 0.5
+
+show results
+show accuracy
+
+print("")
+
+## ── PART 5: Missing Values ─────────────────────────
+##
+## Real data often has MISSING values.
+##
+## Options:
+##   1. Remove rows with missing values
+##   2. Fill with average (mean imputation)
+##   3. Fill with 0 or a default
+##   4. Use a smarter method (interpolation)
+##
+## For now, we'll use simple imputation (fill with 0).
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 5: Missing Values")
+print("───────────────────────")
+print("")
+
+print("Real data has MISSING values!")
+print("")
+print("Options:")
+print("  1. Remove rows with missing values")
+print("  2. Fill with average")
+print("  3. Fill with 0")
+print("  4. Use interpolation")
+print("")
+
+## ── PART 6: Data Types ─────────────────────────────
+##
+## Real data has different TYPES:
+##
+##   NUMERICAL: Numbers (age, salary, temperature)
+##   CATEGORICAL: Categories (color, city, type)
+##
+## Categorical data needs ENCODING:
+##   Color: Red=0, Blue=1, Green=2
+##   Or: Red=[1,0,0], Blue=[0,1,0], Green=[0,0,1]
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 6: Data Types")
+print("───────────────────")
+print("")
+
+print("Data types:")
+print("  NUMERICAL: Numbers (age, salary)")
+print("  CATEGORICAL: Categories (color, city)")
+print("")
+print("Categorical needs ENCODING:")
+print("  Color: Red=0, Blue=1, Green=2")
+print("")
+
+## ── PART 7: Practical Example ──────────────────────
+##
+## Let's work with realistic data:
+##   (age, income, hours_studied, passed)
+##
+## Data:
+##   (18, 20000, 2, 0)  — young, low income, studied little, failed
+##   (22, 35000, 5, 1)  — young, medium income, studied more, passed
+##   (25, 50000, 8, 1)  — young, good income, studied a lot, passed
+##   (30, 60000, 3, 0)  — older, good income, studied little, failed
+##   (35, 80000, 6, 1)  — older, high income, studied more, passed
+##   (40, 90000, 10, 1) — older, high income, studied a lot, passed
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 7: Practical Example")
+print("──────────────────────────")
+print("")
+
+print("Data: (hours_studied, score)")
+print("")
+
+data points
+  (2, 40)
+  (4, 55)
+  (6, 70)
+  (8, 85)
+  (10, 95)
+
+model simple
+train 300 epochs
+
+## Predict for a new student
+predict 7
+
+show results
+show accuracy
+
+print("")
+
+## ── PART 8: Data Cleaning Checklist ────────────────
+##
+## Before training, ALWAYS:
+##
+##   □ Check for missing values
+##   □ Remove duplicates
+##   □ Normalize numerical features
+##   □ Encode categorical features
+##   □ Check for outliers
+##   □ Split into train/test sets
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 8: Data Cleaning Checklist")
+print("─────────────────────────────────")
+print("")
+
+print("Before training, ALWAYS:")
+print("  □ Check for missing values")
+print("  □ Remove duplicates")
+print("  □ Normalize numerical features")
+print("  □ Encode categorical features")
+print("  □ Check for outliers")
+print("  □ Split into train/test sets")
+print("")
+
+## ── PART 9: Challenge ───────────────────────────────
+##
+## Challenge 1: Clean This Data
+##   Data with problems:
+##     (10, 20)
+##     (15, 25)
+##     (20, ??)  ← missing value
+##     (25, 35)
+##   Fill in the missing value and train.
+##
+## Challenge 2: Normalize
+##   Take data (100, 200, 300, 400)
+##   Normalize to 0-1 range
+##   What is 250 normalized?
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 5 COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("What you learned:")
+print("  1. Real data is messy and needs cleaning")
+print("  2. Normalization scales features to 0-1")
+print("  3. Missing values need handling")
+print("  4. Categorical data needs encoding")
+print("  5. Always clean data before training")
+print("")
+print("Next: Lesson 6 — Advanced")

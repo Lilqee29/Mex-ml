@@ -1,0 +1,67 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 4 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 4 CHALLENGE: Neural Networks")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: XOR Problem ───────────────────────
+##
+## XOR (exclusive or) is a classic problem:
+##   (0, 0) → 0
+##   (0, 1) → 1
+##   (1, 0) → 1
+##   (1, 1) → 0
+##
+## Create this data and train a model.
+## Can the network learn XOR?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: XOR Problem")
+print("─────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 2: Experiment with Epochs ────────────
+##
+## Train the same data with different epoch counts:
+##   Model A: 100 epochs
+##   Model B: 500 epochs
+##   Model C: 1000 epochs
+##
+## Compare the error values.
+## What do you notice?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Experiment with Epochs")
+print("─────────────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 3: Design Your Own ────────────────────
+##
+## Create a dataset with a pattern you know.
+## Train a neural network.
+## Make predictions.
+## Report your findings.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 3: Design Your Own")
+print("─────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

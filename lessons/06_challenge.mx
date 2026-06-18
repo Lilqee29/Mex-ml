@@ -1,0 +1,52 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 6 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 6 CHALLENGE: Advanced")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Final Project ─────────────────────
+##
+## Create a complete ML project:
+##   1. Choose a problem
+##   2. Create or find data
+##   3. Clean and normalize
+##   4. Train a model
+│   5. Evaluate performance
+│   6. Make predictions
+│   7. Document your findings
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: Final Project")
+print("───────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 2: Compare Models ────────────────────
+##
+## Try training with different settings:
+##   - Epoch counts: 100, 500, 1000
+##   - Data sizes: 4, 8, 16 points
+##
+## What do you notice about:
+##   - Training time?
+│   - Error values?
+│   - Prediction accuracy?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Compare Models")
+print("────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

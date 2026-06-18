@@ -1,0 +1,19 @@
+## utils.mx — ML utility functions
+
+## Export a normalization function
+export fn normalize(val, min, max) {
+  if (max == min) {
+    return 0.5
+  }
+  return (val - min) / (max - min)
+}
+
+## Export a denormalization function
+export fn denormalize(val, min, max) {
+  return val * (max - min) + min
+}
+
+## Export a range generator
+export fn range(start, end) {
+  return start
+}

@@ -1,0 +1,189 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 1: What is Data?
+## ═══════════════════════════════════════════════════════
+##  Run: node mex.js lessons/01_what_is_data.mx
+## ═══════════════════════════════════════════════════════
+
+## ── PART 1: What is Data? ──────────────────────────
+##
+## Data is the fuel of machine learning.
+## Without data, there's nothing to learn from.
+##
+## A dataset is a collection of examples.
+## Each example has:
+##   - Features: the inputs (what we know)
+##   - Labels: the outputs (what we want to predict)
+##
+## Think of it like a recipe:
+##   Features = ingredients (flour, eggs, sugar)
+##   Label = what we're making (cake)
+##
+## ─────────────────────────────────────────────────────
+
+## ── PART 2: Our First Data ──────────────────────────
+##
+## Let's look at some real data.
+## This data shows house sizes and their prices.
+##
+##   Size (sq ft) → Price ($)
+##   1000 → 200000
+##   1500 → 250000
+##   2000 → 300000
+##   2500 → 350000
+##
+## Question: What are the features?
+## Answer: Size (the input)
+##
+## Question: What is the label?
+## Answer: Price (what we want to predict)
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 1: What is Data?")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── PART 3: Loading Data ────────────────────────────
+##
+## In MEX, we load data with "data points"
+## Each point is (feature, label)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 3: Loading Data")
+print("─────────────────────")
+print("")
+
+## House data: (size in sq ft, price in thousands)
+data points
+  (1000, 200)
+  (1500, 250)
+  (2000, 300)
+  (2500, 350)
+
+## Show what we loaded
+show data
+
+print("")
+
+## ── PART 4: Looking at the Pattern ──────────────────
+##
+## Look at the data above.
+##   (1000, 200) → small house, low price
+##   (2500, 350) → big house, high price
+##
+## What pattern do you see?
+## As size goes UP, price goes UP
+##
+## This is a LINEAR pattern — a straight line
+## connects the dots nicely.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 4: Looking at Patterns")
+print("────────────────────────────")
+print("")
+
+## Let's verify the pattern
+let size1 = 1000
+let price1 = 200
+let size2 = 2500
+let price2 = 350
+
+print("Small house: " + size1 + " sq ft → $" + price1 + "K")
+print("Big house:   " + size2 + " sq ft → $" + price2 + "K")
+print("")
+print("Pattern: Bigger house = Higher price")
+print("")
+
+## ── PART 5: The Math Behind the Pattern ─────────────
+##
+## The pattern follows a simple equation:
+##
+##   price = slope × size + intercept
+##
+## For our data:
+##   slope = (350 - 200) / (2500 - 1000) = 0.1
+##   intercept = 200 - 0.1 × 1000 = 100
+##
+## So: price = 0.1 × size + 100
+##
+## Let's test it:
+##   For size = 1000: price = 0.1 × 1000 + 100 = 200 ✓
+##   For size = 2500: price = 0.1 × 2500 + 100 = 350 ✓
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 5: The Math")
+print("─────────────────")
+print("")
+
+let slope = 0.1
+let intercept = 100
+
+## Test the formula
+let test1 = slope * 1000 + intercept
+let test2 = slope * 2500 + intercept
+
+print("Formula: price = " + slope + " × size + " + intercept)
+print("")
+print("Test 1: size=1000 → predicted=" + test1 + " (actual=200)")
+print("Test 2: size=2500 → predicted=" + test2 + " (actual=350)")
+print("")
+
+## ── PART 6: Using Built-in Math ─────────────────────
+##
+## MEX has built-in math functions:
+##   sqrt(x) — square root
+##   pow(x, y) — x to the power y
+##   abs(x) — absolute value
+##
+## Let's use them to calculate the slope properly.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 6: Built-in Math Functions")
+print("────────────────────────────────")
+print("")
+
+## Calculate slope using the formula
+## slope = (y2 - y1) / (x2 - x1)
+let x1 = 1000
+let y1 = 200
+let x2 = 2500
+let y2 = 350
+
+let calc_slope = (y2 - y1) / (x2 - x1)
+let calc_intercept = y1 - calc_slope * x1
+
+print("Calculated slope: " + calc_slope)
+print("Calculated intercept: " + calc_intercept)
+print("")
+print("Formula: price = " + calc_slope + " × size + " + calc_intercept)
+print("")
+
+## ── PART 7: Challenge ───────────────────────────────
+##
+## Challenge 1: Create your own dataset
+##   - Make 4 points with (hours_studied, test_score)
+##   - Show the data
+##
+## Challenge 2: Predict
+##   - Use the pattern to predict score for 5 hours
+##   - Print your prediction
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 1 COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("What you learned:")
+print("  1. Data has features (inputs) and labels (outputs)")
+print("  2. Datasets are collections of examples")
+print("  3. Patterns exist in data")
+print("  4. We can describe patterns with math")
+print("  5. MEX can load and display data")
+print("")
+print("Next: Lesson 2 — Finding Patterns (Linear Regression)")

@@ -1,0 +1,52 @@
+{
+  "name": "mex-ml",
+  "version": "0.1.0",
+  "description": "A beginner-friendly ML learning language that teaches machine learning through clean, readable code. Zero dependencies.",
+  "main": "mex.js",
+  "bin": {
+    "mex": "mex.js"
+  },
+  "scripts": {
+    "start": "node mex.js",
+    "test": "node mex.js examples/99_full_test.mx",
+    "playground": "npx serve playground"
+  },
+  "keywords": [
+    "machine-learning",
+    "ml",
+    "education",
+    "tensorflow",
+    "neural-network",
+    "programming-language",
+    "beginner",
+    "learning",
+    "mex",
+    "dsl",
+    "data-science",
+    "artificial-intelligence"
+  ],
+  "author": "Ibrahim Qoyum",
+  "license": "MIT",
+  "type": "commonjs",
+  "files": [
+    "mex.js",
+    "lib/",
+    "examples/",
+    "lessons/",
+    "datasets/",
+    "playground/",
+    "index.html",
+    "docs/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibrahimqoyum/mex-ml.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ibrahimqoyum/mex-ml/issues"
+  },
+  "homepage": "https://github.com/ibrahimqoyum/mex-ml#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,6 @@
+## @mex/stats - MEX Package
+## Installed via mex install
+
+export fn hello() {
+  return "Hello from @mex/stats!"
+}

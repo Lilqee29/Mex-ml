@@ -1,0 +1,284 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 4: Neural Networks
+## ═══════════════════════════════════════════════════════
+##  Run: node mex.js lesson 4
+## ═══════════════════════════════════════════════════════
+
+## ── PART 1: What is a Neural Network? ──────────────
+##
+## A neural network is a computer program inspired by
+## the human brain. It LEARNS from data.
+##
+## Think of it like this:
+##   - Your brain has neurons connected together
+##   - A neural network has nodes connected together
+##   - Neurons pass signals to each other
+##   - Nodes pass numbers to each other
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 4: Neural Networks")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+print("PART 1: What is a Neural Network?")
+print("──────────────────────────────────")
+print("")
+
+print("A neural network is a program that LEARNS from data.")
+print("")
+print("Brain analogy:")
+print("  Brain → Neurons connected together")
+print("  Neural Network → Nodes connected together")
+print("")
+
+## ── PART 2: The Structure ──────────────────────────
+##
+## A neural network has LAYERS:
+##
+##   INPUT LAYER    HIDDEN LAYER    OUTPUT LAYER
+##   (your data)    (learning)      (prediction)
+##
+##      O               O               O
+##        \           /   \           /
+##          O -------O-----O-------O
+##        /           \   /           \
+##      O               O               O
+##
+## INPUT: What you give it (features)
+## HIDDEN: Where learning happens
+## OUTPUT: What it predicts (labels)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 2: The Structure")
+print("──────────────────────")
+print("")
+
+print("Neural networks have LAYERS:")
+print("")
+print("  INPUT LAYER    HIDDEN LAYER    OUTPUT LAYER")
+print("  (your data)    (learning)      (prediction)")
+print("")
+print("  [Features]  →  [Patterns]  →  [Prediction]")
+print("")
+
+## ── PART 3: Neurons (Nodes) ────────────────────────
+##
+## Each node does simple math:
+##
+##   1. Multiply inputs by weights (importance)
+##   2. Add them up
+##   3. Add a bias (offset)
+##   4. Apply an activation function
+##
+## Formula: output = activation(sum(input × weight) + bias)
+##
+## That's it! Each node just does this one thing.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 3: Neurons (Nodes)")
+print("────────────────────────")
+print("")
+
+print("Each node does simple math:")
+print("  1. Multiply inputs × weights")
+print("  2. Add them up")
+print("  3. Add a bias")
+print("  4. Apply activation function")
+print("")
+print("Formula: output = activation(Σ(input × weight) + bias)")
+print("")
+
+## ── PART 4: Weights and Biases ─────────────────────
+##
+## WEIGHTS: How important each input is
+##   High weight = very important
+##   Low weight = not important
+##
+## BIAS: An offset, like an intercept in y = mx + b
+##
+## The network LEARNS the best weights and biases!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 4: Weights and Biases")
+print("───────────────────────────")
+print("")
+
+print("WEIGHTS: Importance of each input")
+print("  High weight = very important")
+print("  Low weight = not important")
+print("")
+print("BIAS: An offset (like intercept in y = mx + b)")
+print("")
+print("The network LEARNS the best weights and biases!")
+print("")
+
+## ── PART 5: Activation Functions ───────────────────
+##
+## Activation functions add NON-LINEARITY.
+## Without them, a neural network is just linear regression!
+##
+## Common activations:
+##
+## SIGMOID: Outputs 0 to 1 (good for probabilities)
+##   sigmoid(x) = 1 / (1 + e^(-x))
+##
+## RELU: Outputs 0 or positive (most common)
+##   relu(x) = max(0, x)
+##
+## TANH: Outputs -1 to 1
+##   tanh(x)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 5: Activation Functions")
+print("─────────────────────────────")
+print("")
+
+print("Activation functions add non-linearity.")
+print("Without them, network = linear regression!")
+print("")
+print("Common activations:")
+print("  SIGMOID: 0 to 1 (good for probabilities)")
+print("  RELU: 0 or positive (most common)")
+print("  TANH: -1 to 1")
+print("")
+
+## ── PART 6: How Learning Works ─────────────────────
+##
+## Learning happens in steps:
+##
+## 1. FORWARD PASS: Data flows through network
+##    Input → Hidden → Output (prediction)
+##
+## 2. CALCULATE ERROR: How wrong was prediction?
+##    Error = Actual - Predicted
+##
+## 3. BACKWARD PASS: Propagate error backwards
+##    Adjust weights to reduce error
+##
+## 4. REPEAT: Do this many times (epochs)
+##
+## Each epoch makes the network a little better!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 6: How Learning Works")
+print("───────────────────────────")
+print("")
+
+print("Learning happens in steps:")
+print("")
+print("  1. FORWARD PASS: Data flows through")
+print("  2. CALCULATE ERROR: How wrong?")
+print("  3. BACKWARD PASS: Adjust weights")
+print("  4. REPEAT: Do this many times")
+print("")
+print("Each epoch = one cycle of learning")
+print("")
+
+## ── PART 7: Training a Neural Network ──────────────
+##
+## Let's train a neural network on simple data.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 7: Training a Neural Network")
+print("──────────────────────────────────")
+print("")
+
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+  (4, 8)
+
+print("Data: y = 2x (simple pattern)")
+print("")
+
+model simple
+train 300 epochs
+
+print("")
+
+## ── PART 8: Making Predictions ──────────────────────
+##
+## The trained network can now predict!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 8: Making Predictions")
+print("──────────────────────────")
+print("")
+
+predict 5
+predict 6
+predict 10
+
+show results
+show accuracy
+
+print("")
+
+## ── PART 9: Why Neural Networks? ───────────────────
+##
+## Neural networks can learn COMPLEX patterns
+## that simple linear regression cannot.
+##
+## Examples:
+##   - Image recognition (cat vs dog)
+##   - Language translation
+##   - Game playing (chess, Go)
+##   - Music generation
+##
+## The secret: multiple layers let the network
+## learn hierarchies of patterns.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 9: Why Neural Networks?")
+print("─────────────────────────────")
+print("")
+
+print("Neural networks learn COMPLEX patterns:")
+print("  - Image recognition")
+print("  - Language translation")
+print("  - Game playing")
+print("  - Music generation")
+print("")
+print("Secret: multiple layers learn hierarchies")
+print("")
+
+## ── PART 10: Challenge ─────────────────────────────
+##
+## Challenge 1: XOR Problem
+##   Create data for XOR (exclusive or):
+##     (0, 0) → 0
+##     (0, 1) → 1
+##     (1, 0) → 1
+##     (1, 1) → 0
+##   Can the network learn this?
+##
+## Challenge 2: Experiment
+##   Try training with 100 vs 500 vs 1000 epochs
+##   What happens to the error?
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 4 COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("What you learned:")
+print("  1. Neural networks are inspired by the brain")
+print("  2. They have input, hidden, and output layers")
+print("  3. Nodes compute: activation(Σ(weight × input) + bias)")
+print("  4. Weights and biases are learned from data")
+print("  5. Learning = forward pass + error + backward pass")
+print("  6. Activation functions add non-linearity")
+print("")
+print("Next: Lesson 5 — Real Data")

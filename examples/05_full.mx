@@ -1,0 +1,19 @@
+## Full Example: Linear Regression
+## Learn y = 2x + 1
+
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+  (5, 11)
+
+model simple
+
+train 500 epochs
+
+predict 6
+predict 10
+show results
+
+show accuracy

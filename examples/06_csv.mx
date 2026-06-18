@@ -1,0 +1,10 @@
+## Test CSV Loading
+
+data csv "datasets/simple.json"
+
+model simple
+
+train 500 epochs
+
+predict 6
+show results

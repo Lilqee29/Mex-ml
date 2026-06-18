@@ -1,0 +1,103 @@
+## ═══════════════════════════════════════════════════════
+##  MEX CSV Loading Test
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  Testing CSV Loading & Data Functions")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── Test 1: Load CSV ──────────────────────────────
+print("TEST 1: Load CSV File")
+print("─────────────────────")
+
+data csv "datasets/houses.csv"
+
+show data
+
+print("")
+
+## ── Test 2: Statistics ─────────────────────────────
+print("TEST 2: Statistics Functions")
+print("─────────────────────────────")
+
+let values = [10, 20, 30, 40, 50]
+let m = mean(values)
+let s = std(values)
+let med = median(values)
+let total = sum(values)
+
+print("Values: [10, 20, 30, 40, 50]")
+print("Mean: " + m)
+print("Std Dev: " + s)
+print("Median: " + med)
+print("Sum: " + total)
+
+print("")
+
+## ── Test 3: Array Functions ────────────────────────
+print("TEST 3: Array Functions")
+print("────────────────────────")
+
+let nums = [5, 3, 8, 1, 9, 2, 7]
+let sorted = sort(nums)
+let u = unique(nums)
+let rev = reverse(nums)
+let h = head(nums, 3)
+let t = tail(nums, 2)
+
+print("Original: [5, 3, 8, 1, 9, 2, 7]")
+print("Sorted: " + sorted)
+print("Unique: " + u)
+print("Reversed: " + rev)
+print("Head 3: " + h)
+print("Tail 2: " + t)
+
+print("")
+
+## ── Test 4: String Functions ──────────────────────
+print("TEST 4: String Functions")
+print("─────────────────────────")
+
+let name = "Hello MEX World"
+let upper_name = upper(name)
+let lower_name = lower(name)
+let length = len(name)
+
+print("Original: " + name)
+print("Uppercase: " + upper_name)
+print("Lowercase: " + lower_name)
+print("Length: " + length)
+
+print("")
+
+## ── Test 5: Normalization ─────────────────────────
+print("TEST 5: Normalization")
+print("─────────────────────")
+
+let raw = [100, 200, 300, 400, 500]
+let norm = normalize_array(raw)
+
+print("Raw: [100, 200, 300, 400, 500]")
+print("Normalized: " + norm)
+
+print("")
+
+## ── Test 6: Build and Train with CSV ──────────────
+print("TEST 6: Train Model with CSV Data")
+print("──────────────────────────────────")
+
+model simple
+train 200 epochs
+
+predict 2500
+predict 3000
+
+show results
+show accuracy
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  ALL TESTS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

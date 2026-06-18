@@ -1,0 +1,81 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 3 — SOLUTIONS
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 3 SOLUTIONS")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Email Spam Detection ──────────────
+
+print("CHALLENGE 1: Email Spam Detection")
+print("──────────────────────────────────")
+
+data points
+  (10, 0)
+  (20, 0)
+  (30, 0)
+  (50, 1)
+  (75, 1)
+  (100, 1)
+
+model simple
+train 300 epochs
+
+predict 40
+
+show results
+show accuracy
+
+print("")
+
+## ── CHALLENGE 2: Weather Classification ────────────
+
+print("CHALLENGE 2: Weather Classification")
+print("─────────────────────────────────────")
+
+data points
+  (0, 0)
+  (5, 0)
+  (10, 0)
+  (25, 1)
+  (35, 1)
+  (40, 1)
+
+model simple
+train 300 epochs
+
+predict 18
+
+show results
+show accuracy
+
+print("")
+
+## ── CHALLENGE 3: Medical Diagnosis ─────────────────
+
+print("CHALLENGE 3: Medical Diagnosis")
+print("───────────────────────────────")
+
+data points
+  (36.0, 0)
+  (36.5, 0)
+  (37.0, 0)
+  (37.5, 1)
+  (38.5, 1)
+  (39.0, 1)
+
+model simple
+train 300 epochs
+
+predict 37.2
+
+show results
+show accuracy
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  SOLUTIONS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

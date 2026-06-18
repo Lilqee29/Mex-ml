@@ -1,0 +1,32 @@
+## main.mx — Demonstrates import/export
+
+## Import specific functions from math.mx
+import { add, multiply, square } from "lib/math.mx"
+
+## Use imported functions
+let sum = add(10, 20)
+print("10 + 20 = " + sum)
+
+let product = multiply(5, 6)
+print("5 * 6 = " + product)
+
+let squared = square(7)
+print("7² = " + squared)
+
+## ML with imported utilities
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+
+model simple
+train 300 epochs
+
+## Predict and display
+for i in range(1, 5) {
+  let result = predict i
+  print("f(" + i + ") = " + result)
+}
+
+show accuracy

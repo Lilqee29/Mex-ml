@@ -1,0 +1,14 @@
+## Lesson 4: Training
+## Training adjusts the model to fit the data.
+
+data points
+  (1, 3)
+  (2, 5)
+  (3, 7)
+  (4, 9)
+
+model simple
+
+train 200 epochs
+
+show accuracy

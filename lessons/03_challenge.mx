@@ -1,0 +1,72 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 3 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 3 CHALLENGE: Classification")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Email Spam Detection ──────────────
+##
+## Create a dataset for email spam detection:
+##   (email_length, is_spam)
+##
+## Rules:
+##   Short emails (10-30 chars) → not spam (0)
+##   Long emails (50-100 chars) → spam (1)
+##
+## Create 6 data points, train, predict for length 40.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: Email Spam Detection")
+print("──────────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 2: Weather Classification ────────────
+##
+## Create a dataset for weather:
+##   (temperature, is_hot)
+##
+## Rules:
+##   Cold (0-10) → not hot (0)
+##   Hot (25-40) → hot (1)
+##
+## Create 6 data points, train, predict for temperature 18.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Weather Classification")
+print("─────────────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 3: Medical Diagnosis ─────────────────
+##
+## Create a dataset for fever detection:
+##   (body_temp, has_fever)
+##
+## Rules:
+##   Normal (36.0-37.0) → no fever (0)
+##   Fever (37.5-39.0) → fever (1)
+##
+## Create 6 data points, train, predict for temp 37.2.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 3: Medical Diagnosis")
+print("───────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

@@ -1,0 +1,260 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 3: Classification
+## ═══════════════════════════════════════════════════════
+##  Run: node mex.js lesson 3
+## ═══════════════════════════════════════════════════════
+
+## ── PART 1: Categories vs Numbers ──────────────────
+##
+## In Lesson 2, we predicted NUMBERS (price, score).
+## That's called REGRESSION.
+##
+## Now we'll predict CATEGORIES (yes/no, cat/dog).
+## That's called CLASSIFICATION.
+##
+## Examples of classification:
+##   - Email → Spam or Not Spam
+##   - Tumor → Malignant or Benign
+##   - Animal → Cat or Dog
+##   - Student → Pass or Fail
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 3: Classification")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+print("PART 1: Categories vs Numbers")
+print("──────────────────────────────")
+print("")
+
+print("Regression (Lesson 2):")
+print("  Input → Number output")
+print("  Example: House size → Price")
+print("")
+print("Classification (Now):")
+print("  Input → Category output")
+print("  Example: Tumor size → Malignant (1) or Benign (0)")
+print("")
+
+## ── PART 2: Binary Classification ──────────────────
+##
+## The simplest classification is BINARY: two categories.
+##
+## We use numbers to represent categories:
+##   0 = No, False, Negative
+##   1 = Yes, True, Positive
+##
+## The model outputs a number between 0 and 1:
+##   0.0 = Definitely No
+##   0.5 = Could be either
+##   1.0 = Definitely Yes
+##
+## We round the output:
+##   < 0.5 → 0 (No)
+##   ≥ 0.5 → 1 (Yes)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 2: Binary Classification")
+print("───────────────────────────────")
+print("")
+
+print("Binary = two categories (0 or 1)")
+print("")
+print("  0 = No, False, Negative")
+print("  1 = Yes, True, Positive")
+print("")
+print("Model outputs probability (0.0 to 1.0):")
+print("  0.1 → Probably No → Round to 0")
+print("  0.5 → Could be either")
+print("  0.9 → Probably Yes → Round to 1")
+print("")
+
+## ── PART 3: Example — Tumor Detection ──────────────
+##
+## Let's classify tumors as malignant or benign.
+##
+## Data: (tumor_size, is_malignant)
+##   (1, 0) — small tumor, benign
+##   (2, 0) — small tumor, benign
+##   (3, 1) — medium tumor, malignant
+##   (4, 1) — large tumor, malignant
+##   (5, 1) — large tumor, malignant
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 3: Example — Tumor Detection")
+print("──────────────────────────────────")
+print("")
+
+data points
+  (1, 0)
+  (2, 0)
+  (3, 1)
+  (4, 1)
+  (5, 1)
+
+print("Data: tumor size → malignant (1) or benign (0)")
+print("")
+
+## ── PART 4: Training the Classifier ────────────────
+##
+## We train exactly like before!
+## The model learns to output probabilities.
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 4: Training the Classifier")
+print("─────────────────────────────────")
+print("")
+
+model simple
+train 300 epochs
+
+print("")
+
+## ── PART 5: Making Predictions ──────────────────────
+##
+## Now we predict and interpret the output:
+##   Output < 0.5 → Benign (0)
+##   Output ≥ 0.5 → Malignant (1)
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 5: Making Predictions")
+print("──────────────────────────")
+print("")
+
+## Predict for different tumor sizes
+predict 1
+predict 2
+predict 3
+predict 4
+predict 5
+
+## Predict for new tumors
+predict 1.5
+predict 3.5
+predict 4.5
+
+show results
+print("")
+
+## ── PART 6: Interpreting Results ────────────────────
+##
+## Look at the predictions:
+##   Size 1 → output near 0 → Benign ✓
+##   Size 2 → output near 0 → Benign ✓
+##   Size 3 → output near 1 → Malignant ✓
+##   Size 4 → output near 1 → Malignant ✓
+##   Size 5 → output near 1 → Malignant ✓
+##
+## The model learned the pattern!
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 6: Interpreting Results")
+print("─────────────────────────────")
+print("")
+
+show accuracy
+
+print("")
+print("Interpretation:")
+print("  Output < 0.5 → Predict 0 (Benign)")
+print("  Output ≥ 0.5 → Predict 1 (Malignant)")
+print("")
+
+## ── PART 7: Accuracy ───────────────────────────────
+##
+## Accuracy = how many predictions were correct
+##
+## If we have 5 test cases and get 4 right:
+##   Accuracy = 4/5 = 80%
+##
+## High accuracy = good model
+## Low accuracy = model needs more training or different data
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 7: Accuracy")
+print("────────────────")
+print("")
+
+print("Accuracy measures correct predictions:")
+print("  Correct predictions / Total predictions")
+print("")
+print("  80% accuracy = 8 out of 10 correct")
+print("  100% accuracy = perfect (rare in real life)")
+print("")
+
+## ── PART 8: Another Example — Pass or Fail ─────────
+##
+## Let's try a different classification problem.
+##
+## Data: (study_hours, passed)
+##   (1, 0) — studied 1 hour, failed
+##   (2, 0) — studied 2 hours, failed
+##   (3, 0) — studied 3 hours, failed
+##   (4, 1) — studied 4 hours, passed
+##   (5, 1) — studied 5 hours, passed
+##   (6, 1) — studied 6 hours, passed
+##
+## ─────────────────────────────────────────────────────
+
+print("PART 8: Another Example — Pass or Fail")
+print("───────────────────────────────────────")
+print("")
+
+data points
+  (1, 0)
+  (2, 0)
+  (3, 0)
+  (4, 1)
+  (5, 1)
+  (6, 1)
+
+model simple
+train 300 epochs
+
+## Would someone who studied 3.5 hours pass?
+predict 3.5
+
+## Would someone who studied 4.5 hours pass?
+predict 4.5
+
+show results
+show accuracy
+
+print("")
+
+## ── PART 9: Challenge ───────────────────────────────
+##
+## Challenge 1: Email Spam Detection
+##   Create data: (email_length, is_spam)
+##   Short emails (10-30 chars) → not spam (0)
+##   Long emails (50-100 chars) → spam (1)
+##   Train and predict for length 40
+##
+## Challenge 2: Weather Classification
+##   Create data: (temperature, is_hot)
+##   Cold (0-10) → not hot (0)
+##   Hot (25-40) → hot (1)
+##   Train and predict for temperature 18
+##
+## ─────────────────────────────────────────────────────
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 3 COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("What you learned:")
+print("  1. Classification predicts categories, not numbers")
+print("  2. Binary classification uses 0 and 1")
+print("  3. Model outputs probability (0.0 to 1.0)")
+print("  4. Round output: < 0.5 → 0, ≥ 0.5 → 1")
+print("  5. Accuracy measures how many predictions were correct")
+print("")
+print("Next: Lesson 4 — Neural Networks")

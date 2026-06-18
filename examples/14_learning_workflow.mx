@@ -1,0 +1,120 @@
+## ═══════════════════════════════════════════════════════
+##  MEX Learning → Production Workflow Example
+## ═══════════════════════════════════════════════════════
+##
+##  This example shows how to:
+##  1. Learn ML concepts with MEX
+##  2. See the TensorFlow.js equivalent
+##  3. Convert to Python for production
+##
+##  Run commands:
+##    node mex.js examples/14_learning_workflow.mx
+##    node mex.js --show-tf examples/14_learning_workflow.mx
+##    node mex.js --python examples/14_learning_workflow.mx
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  MEX Learning → Production Workflow")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── Step 1: Learn with Simple Syntax ──────────────
+print("STEP 1: Learn with Simple MEX Syntax")
+print("────────────────────────────────────")
+
+## Simple data points
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+  (4, 8)
+  (5, 10)
+
+## Simple model
+model simple
+
+## Simple training
+train 100 epochs
+
+## Simple prediction
+predict 6
+predict 10
+
+show results
+show accuracy
+
+print("")
+
+## ── Step 2: See TensorFlow.js Equivalent ──────────
+print("STEP 2: See TensorFlow.js Equivalent")
+print("────────────────────────────────────")
+print("Run: node mex.js --show-tf examples/14_learning_workflow.mx")
+print("")
+
+## ── Step 3: Convert to Python ─────────────────────
+print("STEP 3: Convert to Python for Production")
+print("────────────────────────────────────────")
+print("Run: node mex.js --python examples/14_learning_workflow.mx")
+print("")
+
+## ── Step 4: Use Variables and Functions ───────────
+print("STEP 4: Use MEX Features")
+print("────────────────────────")
+
+## Variables
+let learning_rate = 0.01
+let num_epochs = 200
+
+print("Learning rate: " + learning_rate)
+print("Epochs: " + num_epochs)
+
+## Functions
+fn square(x) {
+  return x * x
+}
+
+fn power(base, exp) {
+  let result = 1
+  for i in range(0, exp) {
+    result = result * base
+  }
+  return result
+}
+
+print("Square(5) = " + square(5))
+print("Power(2, 10) = " + power(2, 10))
+
+## ── Step 5: Data Manipulation ─────────────────────
+print("")
+
+print("STEP 5: Data Manipulation")
+print("─────────────────────────")
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+## Filter
+let evens = filter(numbers, fn(x) { return x % 2 == 0 })
+print("Evens: " + evens)
+
+## Map
+let squared = map(numbers, fn(x) { return x * x })
+print("Squared: " + squared)
+
+## Statistics
+print("Mean: " + mean(numbers))
+print("Std Dev: " + std(numbers))
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  LEARNING COMPLETE!")
+print("═══════════════════════════════════════════════════════")
+print("")
+print("Next steps:")
+print("1. Run: node mex.js --show-tf examples/14_learning_workflow.mx")
+print("   → See TensorFlow.js equivalent")
+print("")
+print("2. Run: node mex.js --python examples/14_learning_workflow.mx")
+print("   → Get Python code for production")
+print("")
+print("3. Copy the Python code and run it with TensorFlow!")

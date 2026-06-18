@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEX Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f14;
+            --bg-secondary: #16161e;
+            --bg-sidebar: #12121a;
+            --bg-card: #1a1a25;
+            --bg-code: #0d0d14;
+            --text-primary: #e8e8ed;
+            --text-secondary: #9090a0;
+            --text-muted: #606070;
+            --accent: #ff6b35;
+            --accent-2: #00d4aa;
+            --accent-3: #7c5cfc;
+            --border: #2a2a35;
+            --sidebar-width: 280px;
+            --header-height: 60px;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* ── Header ──────────────────────────────────── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(15, 15, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            width: var(--sidebar-width);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .header-logo span {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .search-shortcut {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.15rem 0.4rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+            padding-left: 1.5rem;
+        }
+
+        .header-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .header-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .version-badge {
+            padding: 0.3rem 0.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-2);
+        }
+
+        /* ── Sidebar ─────────────────────────────────── */
+        .sidebar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 1.5rem 0;
+            z-index: 100;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .sidebar-link.active {
+            color: var(--accent);
+            background: rgba(255, 107, 53, 0.05);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-link .icon {
+            width: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .sidebar-badge {
+            margin-left: auto;
+            padding: 0.1rem 0.4rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .sidebar-badge.new {
+            background: var(--accent-2);
+        }
+
+        /* ── Main Content ────────────────────────────── */
+        .main {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        .content-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        /* ── Content Elements ────────────────────────── */
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 3rem 0 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        h2:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            padding: 0.15rem 0.4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--accent-2);
+        }
+
+        pre {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .code-block-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .code-block-copy {
+            padding: 0.3rem 0.6rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .code-block-copy:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .code-block pre {
+            border-radius: 0 0 12px 12px;
+            margin-top: 0;
+        }
+
+        /* ── Syntax Highlighting ─────────────────────── */
+        .kw { color: #ff6b35; }
+        .fn { color: #ff4d6a; }
+        .str { color: #00d4aa; }
+        .num { color: #7c5cfc; }
+        .cmt { color: #606070; }
+
+        /* ── Cards ───────────────────────────────────── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ── Callout ─────────────────────────────────── */
+        .callout {
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 3px solid;
+        }
+
+        .callout-info {
+            background: rgba(0, 212, 170, 0.05);
+            border-color: var(--accent-2);
+        }
+
+        .callout-warning {
+            background: rgba(255, 107, 53, 0.05);
+            border-color: var(--accent);
+        }
+
+        .callout-title {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .callout-info .callout-title { color: var(--accent-2); }
+        .callout-warning .callout-title { color: var(--accent); }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ── Table ───────────────────────────────────── */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-secondary);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        td {
+            font-size: 0.9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── Comparison ──────────────────────────────── */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-side {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-header {
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .comparison-side:first-child .comparison-header {
+            color: var(--accent);
+        }
+
+        .comparison-side:last-child .comparison-header {
+            color: var(--accent-2);
+        }
+
+        .comparison-side pre {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+        }
+
+        /* ── Search Results ──────────────────────────── */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-result:last-child {
+            border-bottom: none;
+        }
+
+        .search-result:hover {
+            background: var(--bg-secondary);
+        }
+
+        .search-result-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-path {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .search-result mark {
+            background: rgba(255, 107, 53, 0.3);
+            color: var(--text-primary);
+            border-radius: 2px;
+        }
+
+        /* ── Tags ────────────────────────────────────── */
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-2);
+        }
+
+        /* ── Steps ───────────────────────────────────── */
+        .steps {
+            margin: 1.5rem 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-family: var(--font-heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ── Responsive ──────────────────────────────── */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .header-logo {
+                width: auto;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Animations ──────────────────────────────── */
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">
+            MEX <span>v1.0</span>
+        </div>
+        <div class="header-search">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search documentation...">
+            <span class="search-shortcut">⌘K</span>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+        <div class="header-actions">
+            <span class="version-badge">v1.0.0</span>
+            <button class="header-btn">GitHub</button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <a href="#introduction" class="sidebar-link active">
+                <span class="icon">📖</span> Introduction
+            </a>
+            <a href="#installation" class="sidebar-link">
+                <span class="icon">📦</span> Installation
+            </a>
+            <a href="#quickstart" class="sidebar-link">
+                <span class="icon">⚡</span> Quick Start
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Core Concepts</div>
+            <a href="#what-is-mex" class="sidebar-link">
+                <span class="icon">🧠</span> What is MEX?
+            </a>
+            <a href="#mex-vs-normal" class="sidebar-link">
+                <span class="icon">⚖️</span> MEX vs Normal Packages
+                <span class="sidebar-badge new">New</span>
+            </a>
+            <a href="#data" class="sidebar-link">
+                <span class="icon">📊</span> Data
+            </a>
+            <a href="#models" class="sidebar-link">
+                <span class="icon">🤖</span> Models
+            </a>
+            <a href="#training" class="sidebar-link">
+                <span class="icon">🎯</span> Training
+            </a>
+            <a href="#prediction" class="sidebar-link">
+                <span class="icon">🔮</span> Prediction
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Language</div>
+            <a href="#variables" class="sidebar-link">
+                <span class="icon">📦</span> Variables
+            </a>
+            <a href="#functions" class="sidebar-link">
+                <span class="icon">fn</span> Functions
+            </a>
+            <a href="#loops" class="sidebar-link">
+                <span class="icon">🔁</span> Loops
+            </a>
+            <a href="#conditionals" class="sidebar-link">
+                <span class="icon">❓</span> Conditionals
+            </a>
+            <a href="#math" class="sidebar-link">
+                <span class="icon">🧮</span> Math Functions
+            </a>
+            <a href="#imports" class="sidebar-link">
+                <span class="icon">📦</span> Import/Export
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Learning</div>
+            <a href="#lessons" class="sidebar-link">
+                <span class="icon">🎓</span> Lessons
+            </a>
+            <a href="#challenges" class="sidebar-link">
+                <span class="icon">⚡</span> Challenges
+            </a>
+            <a href="#achievements" class="sidebar-link">
+                <span class="icon">🏆</span> Achievements
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Reference</div>
+            <a href="#syntax" class="sidebar-link">
+                <span class="icon">📝</span> Syntax Reference
+            </a>
+            <a href="#tensorflow" class="sidebar-link">
+                <span class="icon">🔗</span> TensorFlow.js Bridge
+            </a>
+            <a href="#examples" class="sidebar-link">
+                <span class="icon">💼</span> Examples
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="content" id="content">
+            <!-- Introduction -->
+            <section id="introduction">
+                <div class="content-header">
+                    <div class="breadcrumb">
+                        <a href="#">Docs</a> / <span>Introduction</span>
+                    </div>
+                    <h1>Introduction to MEX</h1>
+                    <p>Learn Machine Learning by writing code, not by reading textbooks.</p>
+                </div>
+
+                <p>MEX is a beginner-friendly programming language designed to teach machine learning concepts through a clean, readable DSL (Domain Specific Language). It mirrors TensorFlow.js syntax so skills transfer directly to real-world ML development.</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">💡 Why MEX?</div>
+                    <p>Traditional ML requires complex setup, math-heavy theory, and boilerplate code. MEX strips away the complexity so you can focus on <strong>understanding concepts</strong>, not debugging imports.</p>
+                </div>
+
+                <h3>Key Features</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🧠</div>
+                        <h4>Zero Dependencies</h4>
+                        <p>Built-in neural network engine. No npm packages needed.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📖</div>
+                        <h4>Readable Syntax</h4>
+                        <p>Code reads like English. <code>data points</code>, <code>train</code>, <code>predict</code>.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h4>5 Lines to ML</h4>
+                        <p>Load data, create model, train, predict. That's it.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔗</div>
+                        <h4>TF.js Bridge</h4>
+                        <p>See equivalent TensorFlow.js code. Skills transfer directly.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section id="installation">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Installation</span>
+                </div>
+                <h1>Installation</h1>
+
+                <p>MEX requires Node.js 14+ and has zero external dependencies.</p>
+
+                <h3>Step 1: Get Node.js</h3>
+                <p>Download from <a href="https://nodejs.org">nodejs.org</a> (LTS version recommended).</p>
+
+                <h3>Step 2: Verify Installation</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node --version   <span class="cmt"># Should show v14 or higher</span></code></pre>
+                </div>
+
+                <h3>Step 3: Clone or Download MEX</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>git clone https://github.com/your-repo/mex.git
+cd mex</code></pre>
+                </div>
+
+                <h3>Step 4: Test It</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node mex.js examples/01_data.mx</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">✅ That's it!</div>
+                    <p>No <code>npm install</code>. No native modules. No build step. Just run and learn.</p>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section id="quickstart">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Quick Start</span>
+                </div>
+                <h1>Quick Start</h1>
+
+                <p>Let's build your first ML model in under 5 lines.</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Create a file</h4>
+                            <p>Make a new file called <code>my_first_model.mx</code></p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Write the code</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">my_first_model.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt">## Simple linear regression</span>
+
+<span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">3</span>)
+  (<span class="num">2</span>, <span class="num">5</span>)
+  (<span class="num">3</span>, <span class="num">7</span>)
+  (<span class="num">4</span>, <span class="num">9</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">100</span> epochs
+<span class="kw">predict</span> <span class="num">5</span>
+<span class="kw">show results</span></code></pre>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Run it</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node mex.js my_first_model.mx</code></pre>
+                </div>
+
+                <h3>Expected Output</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">output</span>
+                    </div>
+                    <pre><code>Data loaded: 4 points
+Model created: simple (linear)
+Training for 100 epochs...
+Training complete! Error: 0.000000
+Prediction for 5: ~11.0
+Predictions:
+  5 → [11]</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">🎉 Congratulations!</div>
+                    <p>You just did machine learning! The model learned the pattern <code>y = 2x + 1</code> and predicted that input 5 gives output 11.</p>
+                </div>
+            </section>
+
+            <!-- What is MEX -->
+            <section id="what-is-mex">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>What is MEX?</span>
+                </div>
+                <h1>What is MEX?</h1>
+
+                <p>MEX is a <strong>programming language</strong> designed specifically for learning machine learning. It's not a library, not a framework, not a wrapper — it's a complete language with its own syntax, parser, and interpreter.</p>
+
+                <h3>Language Features</h3>
+                <ul>
+                    <li><strong>Custom syntax</strong> — ML-specific keywords like <code>data points</code>, <code>model</code>, <code>train</code></li>
+                    <li><strong>Variables</strong> — <code>let x = 10</code></li>
+                    <li><strong>Functions</strong> — <code>fn add(a, b) { return a + b }</code></li>
+                    <li><strong>Loops</strong> — <code>for i in range(0, 10) { ... }</code></li>
+                    <li><strong>Conditionals</strong> — <code>if (x > 5) { ... } else { ... }</code></li>
+                    <li><strong>Import/Export</strong> — Modular code across files</li>
+                    <li><strong>Built-in math</strong> — <code>sqrt()</code>, <code>pow()</code>, <code>abs()</code>, <code>sin()</code>, etc.</li>
+                </ul>
+
+                <h3>ML Features</h3>
+                <ul>
+                    <li><strong>Neural network engine</strong> — Built from scratch, zero dependencies</li>
+                    <li><strong>Data normalization</strong> — Automatic scaling</li>
+                    <li><strong>Training</strong> — Gradient descent with configurable epochs</li>
+                    <li><strong>Prediction</strong> — Use trained models instantly</li>
+                    <li><strong>TF.js bridge</strong> — See equivalent TensorFlow.js code</li>
+                </ul>
+            </section>
+
+            <!-- MEX vs Normal Packages -->
+            <section id="mex-vs-normal">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>MEX vs Normal Packages</span>
+                </div>
+                <h1>MEX vs Normal Packages</h1>
+
+                <p>MEX is fundamentally different from normal npm packages. Here's how:</p>
+
+                <div class="comparison">
+                    <div class="comparison-side">
+                        <div class="comparison-header">MEX (Learning Language)</div>
+                        <pre><code><span class="cmt"># It's a LANGUAGE you learn</span>
+<span class="cmt"># with its own syntax</span>
+
+<span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">2</span>)
+  (<span class="num">2</span>, <span class="num">4</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">100</span> epochs
+<span class="kw">predict</span> <span class="num">5</span>
+
+<span class="cmt"># You RUN it with:</span>
+<span class="cmt"># node mex.js file.mx</span></code></pre>
+                    </div>
+                    <div class="comparison-side">
+                        <div class="comparison-header">Normal Package (Library)</div>
+                        <pre><code><span class="cmt">// It's a LIBRARY you import</span>
+<span class="cmt">// with JavaScript syntax</span>
+
+<span class="kw">const</span> tf = <span class="fn">require</span>(<span class="str">'@tensorflow/tfjs'</span>);
+
+<span class="kw">const</span> model = tf.<span class="fn">sequential</span>();
+model.<span class="fn">add</span>(tf.layers.<span class="fn">dense</span>({
+  <span class="num">units</span>: <span class="num">1</span>,
+  <span class="num">activation</span>: <span class="str">'linear'</span>
+}));
+
+<span class="cmt">// You import it in JS code</span></code></pre>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>MEX</th>
+                                <th>Normal Package</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Type</strong></td>
+                                <td>Programming Language</td>
+                                <td>JavaScript Library</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Syntax</strong></td>
+                                <td>Custom ML-focused</td>
+                                <td>Standard JavaScript</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Purpose</strong></td>
+                                <td>Teach ML concepts</td>
+                                <td>Build production apps</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dependencies</strong></td>
+                                <td>Zero</td>
+                                <td>Often many</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Learning Curve</strong></td>
+                                <td>Beginner-friendly</td>
+                                <td>Requires JS knowledge</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Execution</strong></td>
+                                <td><code>node mex.js file.mx</code></td>
+                                <td><code>require('package')</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Output</strong></td>
+                                <td>Educational, clear</td>
+                                <td>Performance-optimized</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Progression</strong></td>
+                                <td>Leads to TensorFlow.js</td>
+                                <td>Direct production use</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The MEX Path</h3>
+                <div class="callout callout-info">
+                    <div class="callout-title">🎯 Learning Progression</div>
+                    <p><strong>MEX</strong> (learn concepts) → <strong>TensorFlow.js</strong> (build real apps) → <strong>Production ML</strong></p>
+                    <p>MEX teaches you <em>how ML works</em>. TensorFlow.js lets you <em>build with ML</em>. Both use the same core concepts.</p>
+                </div>
+
+                <h3>When to Use MEX</h3>
+                <ul>
+                    <li>Learning machine learning for the first time</li>
+                    <li>Understanding how neural networks work</li>
+                    <li>Teaching ML to students</li>
+                    <li>Prototyping ML concepts quickly</li>
+                </ul>
+
+                <h3>When to Use Normal Packages</h3>
+                <ul>
+                    <li>Building production applications</li>
+                    <li>Need maximum performance</li>
+                    <li>Integrating with existing JavaScript projects</li>
+                    <li>Advanced ML research</li>
+                </ul>
+            </section>
+
+            <!-- Data -->
+            <section id="data">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Data</span>
+                </div>
+                <h1>Data</h1>
+
+                <p>Data is the fuel of machine learning. MEX provides simple ways to load and work with data.</p>
+
+                <h3>Inline Data</h3>
+                <p>Define data directly in your <code>.mx</code> file:</p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">data.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">2</span>)
+  (<span class="num">2</span>, <span class="num">4</span>)
+  (<span class="num">3</span>, <span class="num">6</span>)
+  (<span class="num">4</span>, <span class="num">8</span>)
+
+<span class="kw">show data</span></code></pre>
+                </div>
+
+                <h3>Data Format</h3>
+                <p>Each data point is a pair <code>(feature, label)</code>:</p>
+                <ul>
+                    <li><strong>Feature</strong> — The input (what you know)</li>
+                    <li><strong>Label</strong> — The output (what you want to predict)</li>
+                </ul>
+
+                <h3>Displaying Data</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">show data</span>     <span class="cmt"># Display loaded data</span>
+<span class="kw">show results</span>  <span class="cmt"># Display predictions</span>
+<span class="kw">show accuracy</span> <span class="cmt"># Display training error</span></code></pre>
+                </div>
+            </section>
+
+            <!-- Models -->
+            <section id="models">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Models</span>
+                </div>
+                <h1>Models</h1>
+
+                <p>Models are the core of ML. They learn patterns from data and make predictions.</p>
+
+                <h3>Simple Model (Linear Regression)</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">model simple</span>
+
+<span class="cmt"># Finds the line y = mx + b</span>
+<span class="cmt"># Best for linear patterns</span></code></pre>
+                </div>
+
+                <h3>Sequential Model (Neural Network)</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">model sequential</span>
+<span class="fn">dense</span> <span class="num">128</span> relu
+<span class="fn">dense</span> <span class="num">10</span> softmax
+
+<span class="cmt"># Multiple layers for complex patterns</span></code></pre>
+                </div>
+
+                <h3>Layer Types</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>Syntax</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>dense</code></td>
+                                <td><code>dense &lt;units&gt; &lt;activation&gt;</code></td>
+                                <td>Fully connected layer</td>
+                            </tr>
+                            <tr>
+                                <td><code>dropout</code></td>
+                                <td><code>dropout &lt;rate&gt;</code></td>
+                                <td>Prevent overfitting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Activation Functions</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activation</th>
+                                <th>Range</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>relu</code></td>
+                                <td>[0, ∞)</td>
+                                <td>Hidden layers (most common)</td>
+                            </tr>
+                            <tr>
+                                <td><code>sigmoid</code></td>
+                                <td>(0, 1)</td>
+                                <td>Binary classification</td>
+                            </tr>
+                            <tr>
+                                <td><code>softmax</code></td>
+                                <td>(0, 1) sums to 1</td>
+                                <td>Multi-class classification</td>
+                            </tr>
+                            <tr>
+                                <td><code>tanh</code></td>
+                                <td>(-1, 1)</td>
+                                <td>Hidden layers</td>
+                            </tr>
+                            <tr>
+                                <td><code>linear</code></td>
+                                <td>(-∞, ∞)</td>
+                                <td>Regression</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Training -->
+            <section id="training">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Training</span>
+                </div>
+                <h1>Training</h1>
+
+                <p>Training teaches the model to find patterns in your data.</p>
+
+                <h3>Basic Training</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">train</span> <span class="num">100</span> epochs
+
+<span class="cmt"># 1 epoch = model sees all data once</span>
+<span class="cmt"># More epochs = more learning</span></code></pre>
+                </div>
+
+                <h3>With Optimizer</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">train</span> <span class="kw">with adam</span>
+<span class="fn">loss</span> cross_entropy
+<span class="fn">epochs</span> <span class="num">100</span></code></pre>
+                </div>
+
+                <h3>What Happens During Training</h3>
+                <ol>
+                    <li><strong>Forward pass</strong> — Data flows through the model</li>
+                    <li><strong>Calculate error</strong> — How wrong was the prediction?</li>
+                    <li><strong>Backward pass</strong> — Adjust weights to reduce error</li>
+                    <li><strong>Repeat</strong> — Do this for N epochs</li>
+                </ol>
+
+                <h3>Understanding Error</h3>
+                <div class="callout callout-info">
+                    <div class="callout-title">📊 Error Values</div>
+                    <p><strong>Lower error = better model</strong></p>
+                    <ul>
+                        <li>Error near 0 — Model learned well</li>
+                        <li>Error still high — Need more epochs or different data</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Prediction -->
+            <section id="prediction">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Prediction</span>
+                </div>
+                <h1>Prediction</h1>
+
+                <p>After training, use the model to predict unknown values.</p>
+
+                <h3>Basic Prediction</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">predict</span> <span class="num">5</span>
+<span class="kw">predict</span> <span class="num">10</span>
+<span class="kw">predict</span> <span class="num">100</span>
+
+<span class="kw">show results</span></code></pre>
+                </div>
+
+                <h3>Store Predictions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> result = <span class="kw">predict</span> <span class="num">5</span>
+<span class="fn">print</span>(<span class="str">"Prediction: "</span> + result)</code></pre>
+                </div>
+
+                <h3>Loop Predictions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>) {
+  <span class="kw">let</span> pred = <span class="kw">predict</span> i
+  <span class="fn">print</span>(<span class="str">"Input: "</span> + i + <span class="str">" → "</span> + pred)
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Variables -->
+            <section id="variables">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Variables</span>
+                </div>
+                <h1>Variables</h1>
+
+                <p>Store and reuse values with variables.</p>
+
+                <h3>Declaration</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> x = <span class="num">10</span>
+<span class="kw">let</span> name = <span class="str">"MEX"</span>
+<span class="kw">let</span> pi = <span class="num">3.14159</span></code></pre>
+                </div>
+
+                <h3>Reassignment</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> x = <span class="num">10</span>
+x = <span class="num">20</span>  <span class="cmt"># x is now 20</span></code></pre>
+                </div>
+
+                <h3>Use in Expressions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> a = <span class="num">5</span>
+<span class="kw">let</span> b = <span class="num">10</span>
+<span class="kw">let</span> sum = a + b  <span class="cmt"># sum = 15</span>
+
+<span class="fn">print</span>(<span class="str">"Sum: "</span> + sum)</code></pre>
+                </div>
+            </section>
+
+            <!-- Functions -->
+            <section id="functions">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Functions</span>
+                </div>
+                <h1>Functions</h1>
+
+                <p>Reuse code with functions.</p>
+
+                <h3>Define a Function</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">fn</span> <span class="fn">add</span>(a, b) {
+  <span class="kw">return</span> a + b
+}
+
+<span class="kw">let</span> result = <span class="fn">add</span>(<span class="num">10</span>, <span class="num">20</span>)
+<span class="fn">print</span>(result)  <span class="cmt"># 30</span></code></pre>
+                </div>
+
+                <h3>Recursive Functions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">fn</span> <span class="fn">factorial</span>(n) {
+  <span class="kw">if</span> (n <= <span class="num">1</span>) {
+    <span class="kw">return</span> <span class="num">1</span>
+  }
+  <span class="kw">return</span> n * <span class="fn">factorial</span>(n - <span class="num">1</span>)
+}
+
+<span class="fn">print</span>(<span class="fn">factorial</span>(<span class="num">5</span>))  <span class="cmt"># 120</span></code></pre>
+                </div>
+            </section>
+
+            <!-- Loops -->
+            <section id="loops">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Loops</span>
+                </div>
+                <h1>Loops</h1>
+
+                <p>Repeat code with loops.</p>
+
+                <h3>For Loop</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">0</span>, <span class="num">10</span>) {
+  <span class="fn">print</span>(i)
+}
+<span class="cmt"># Prints 0, 1, 2, ..., 9</span></code></pre>
+                </div>
+
+                <h3>While Loop</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> count = <span class="num">0</span>
+<span class="kw">while</span> (count < <span class="num">5</span>) {
+  <span class="fn">print</span>(count)
+  count = count + <span class="num">1</span>
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- Conditionals -->
+            <section id="conditionals">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Conditionals</span>
+                </div>
+                <h1>Conditionals</h1>
+
+                <p>Make decisions with if/else.</p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">let</span> accuracy = <span class="num">0.95</span>
+
+<span class="kw">if</span> (accuracy > <span class="num">0.9</span>) {
+  <span class="fn">print</span>(<span class="str">"Model is great!"</span>)
+} <span class="kw">else</span> <span class="kw">if</span> (accuracy > <span class="num">0.7</span>) {
+  <span class="fn">print</span>(<span class="str">"Model is okay"</span>)
+} <span class="kw">else</span> {
+  <span class="fn">print</span>(<span class="str">"Needs more training"</span>)
+}</code></pre>
+                </div>
+
+                <h3>Comparison Operators</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>==</code></td><td>Equal to</td></tr>
+                            <tr><td><code>!=</code></td><td>Not equal to</td></tr>
+                            <tr><td><code>></code></td><td>Greater than</td></tr>
+                            <tr><td><code><</code></td><td>Less than</td></tr>
+                            <tr><td><code>>=</code></td><td>Greater or equal</td></tr>
+                            <tr><td><code><=</code></td><td>Less or equal</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Math Functions -->
+            <section id="math">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Math Functions</span>
+                </div>
+                <h1>Math Functions</h1>
+
+                <p>Built-in math functions, no import needed.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>sqrt(x)</code></td><td>Square root</td><td><code>sqrt(16)</code> → 4</td></tr>
+                            <tr><td><code>pow(x, y)</code></td><td>Power</td><td><code>pow(2, 10)</code> → 1024</td></tr>
+                            <tr><td><code>abs(x)</code></td><td>Absolute value</td><td><code>abs(-42)</code> → 42</td></tr>
+                            <tr><td><code>sin(x)</code></td><td>Sine</td><td><code>sin(0)</code> → 0</td></tr>
+                            <tr><td><code>cos(x)</code></td><td>Cosine</td><td><code>cos(0)</code> → 1</td></tr>
+                            <tr><td><code>log(x)</code></td><td>Natural log</td><td><code>log(100)</code> → 4.605</td></tr>
+                            <tr><td><code>floor(x)</code></td><td>Round down</td><td><code>floor(3.7)</code> → 3</td></tr>
+                            <tr><td><code>ceil(x)</code></td><td>Round up</td><td><code>ceil(3.2)</code> → 4</td></tr>
+                            <tr><td><code>round(x)</code></td><td>Round to nearest</td><td><code>round(3.5)</code> → 4</td></tr>
+                            <tr><td><code>min(a, b)</code></td><td>Minimum</td><td><code>min(5, 10)</code> → 5</td></tr>
+                            <tr><td><code>max(a, b)</code></td><td>Maximum</td><td><code>max(5, 10)</code> → 10</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Constants</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Constant</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>PI</code></td><td>3.14159...</td></tr>
+                            <tr><td><code>E</code></td><td>2.71828...</td></tr>
+                            <tr><td><code>LN2</code></td><td>0.69314...</td></tr>
+                            <tr><td><code>LOG2E</code></td><td>1.44269...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Import/Export -->
+            <section id="imports">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Import/Export</span>
+                </div>
+                <h1>Import/Export</h1>
+
+                <p>Organize code across multiple files.</p>
+
+                <h3>Exporting</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">lib/math.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">export fn</span> <span class="fn">add</span>(a, b) {
+  <span class="kw">return</span> a + b
+}
+
+<span class="kw">export fn</span> <span class="fn">multiply</span>(a, b) {
+  <span class="kw">return</span> a * b
+}
+
+<span class="kw">export</span> <span class="kw">let</span> pi = <span class="num">3.14159</span></code></pre>
+                </div>
+
+                <h3>Importing Specific Items</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">main.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">import</span> { add, pi } <span class="kw">from</span> <span class="str">"lib/math.mx"</span>
+
+<span class="kw">let</span> sum = <span class="fn">add</span>(<span class="num">10</span>, <span class="num">20</span>)
+<span class="fn">print</span>(<span class="str">"Sum: "</span> + sum)
+<span class="fn">print</span>(<span class="str">"Pi: "</span> + pi)</code></pre>
+                </div>
+
+                <h3>Importing All</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">main.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="kw">import</span> <span class="str">"lib/math.mx"</span>
+
+<span class="cmt"># All exports are now available</span>
+<span class="kw">let</span> sum = <span class="fn">add</span>(<span class="num">10</span>, <span class="num">20</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Lessons -->
+            <section id="lessons">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Lessons</span>
+                </div>
+                <h1>Lessons</h1>
+
+                <p>6 progressive lessons that unlock as you complete them.</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>What is Data?</h4>
+                            <p>Features, labels, datasets</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Finding Patterns</h4>
+                            <p>Linear regression, training, prediction</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Classification</h4>
+                            <p>Categories, binary classification, accuracy</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Neural Networks</h4>
+                            <p>Layers, neurons, weights, backpropagation</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Real Data</h4>
+                            <p>Cleaning, normalization, missing values</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Advanced</h4>
+                            <p>Overfitting, regularization, best practices</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Running Lessons</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt"># List all lessons</span>
+node mex.js lessons
+
+<span class="cmt"># Run a specific lesson</span>
+node mex.js lesson 1
+node mex.js lesson 2
+
+<span class="cmt"># Run a challenge</span>
+node mex.js challenge 1
+
+<span class="cmt"># Check your progress</span>
+node mex.js status</code></pre>
+                </div>
+            </section>
+
+            <!-- Challenges -->
+            <section id="challenges">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Challenges</span>
+                </div>
+                <h1>Challenges</h1>
+
+                <p>Test your knowledge with hands-on challenges.</p>
+
+                <h3>Each Lesson Has</h3>
+                <ul>
+                    <li><strong>Challenge file</strong> — Exercises to complete</li>
+                    <li><strong>Solutions file</strong> — Reference answers</li>
+                </ul>
+
+                <h3>Running Challenges</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node mex.js challenge 1
+node mex.js challenge 2</code></pre>
+                </div>
+
+                <h3>Challenge Structure</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">01_challenge.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt">## CHALLENGE 1: Study Data</span>
+<span class="cmt">## Create a dataset with 4 points</span>
+<span class="cmt">## YOUR CODE HERE:</span>
+
+<span class="cmt">## CHALLENGE 2: Predict</span>
+<span class="cmt">## What would input 6 give?</span>
+<span class="cmt">## YOUR CODE HERE:</span></code></pre>
+                </div>
+            </section>
+
+            <!-- Achievements -->
+            <section id="achievements">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Achievements</span>
+                </div>
+                <h1>Achievements</h1>
+
+                <p>Earn badges as you learn. Stay motivated!</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Badge</th>
+                                <th>Name</th>
+                                <th>How to Earn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>🌟</td><td>First Steps</td><td>Complete your first lesson</td></tr>
+                            <tr><td>🚀</td><td>Half Way</td><td>Complete 3 lessons</td></tr>
+                            <tr><td>🎓</td><td>ML Graduate</td><td>Complete all 6 lessons</td></tr>
+                            <tr><td>⚡</td><td>Challenger</td><td>Complete your first challenge</td></tr>
+                            <tr><td>🏆</td><td>Challenge Master</td><td>Complete all challenges</td></tr>
+                            <tr><td>💪</td><td>Independent</td><td>Complete a lesson without hints</td></tr>
+                            <tr><td>💯</td><td>Perfect</td><td>Get 100% on a challenge</td></tr>
+                            <tr><td>🔥</td><td>High Scorer</td><td>Average score above 80%</td></tr>
+                            <tr><td>📚</td><td>Persistent</td><td>Use 10 or more hints</td></tr>
+                            <tr><td>⚡</td><td>Speed Learner</td><td>Complete 2 lessons in one session</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Viewing Achievements</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node mex.js achievements</code></pre>
+                </div>
+            </section>
+
+            <!-- Syntax Reference -->
+            <section id="syntax">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Syntax Reference</span>
+                </div>
+                <h1>Syntax Reference</h1>
+
+                <p>Complete syntax reference for the MEX language.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Syntax</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Data</td><td><code>data points</code></td><td><code>(1, 2)</code></td></tr>
+                            <tr><td>CSV Data</td><td><code>data csv "file.csv"</code></td><td><code>data csv "data.csv"</code></td></tr>
+                            <tr><td>Model</td><td><code>model simple</code></td><td><code>model sequential</code></td></tr>
+                            <tr><td>Layer</td><td><code>dense &lt;n&gt; &lt;act&gt;</code></td><td><code>dense 128 relu</code></td></tr>
+                            <tr><td>Train</td><td><code>train &lt;n&gt; epochs</code></td><td><code>train 100 epochs</code></td></tr>
+                            <tr><td>Predict</td><td><code>predict &lt;x&gt;</code></td><td><code>predict 5</code></td></tr>
+                            <tr><td>Variable</td><td><code>let x = val</code></td><td><code>let lr = 0.01</code></td></tr>
+                            <tr><td>Array</td><td><code>[1, 2, 3]</code></td><td><code>let nums = [10, 20, 30]</code></td></tr>
+                            <tr><td>Function</td><td><code>fn name(args) {}</code></td><td><code>fn add(a, b) {}</code></td></tr>
+                            <tr><td>Anonymous Fn</td><td><code>fn(args) { return expr }</code></td><td><code>fn(x) { return x * 2 }</code></td></tr>
+                            <tr><td>For loop</td><td><code>for i in range() {}</code></td><td><code>for i in range(0, 10) {}</code></td></tr>
+                            <tr><td>While</td><td><code>while (cond) {}</code></td><td><code>while (x > 0) {}</code></td></tr>
+                            <tr><td>If/else</td><td><code>if (cond) {} else {}</code></td><td><code>if (x > 5) {}</code></td></tr>
+                            <tr><td>Import</td><td><code>import {} from ""</code></td><td><code>import {add} from "lib.mx"</code></td></tr>
+                            <tr><td>Export</td><td><code>export fn/let</code></td><td><code>export fn add() {}</code></td></tr>
+                            <tr><td>Print</td><td><code>print()</code></td><td><code>print("Hello")</code></td></tr>
+                            <tr><td>Show</td><td><code>show data/results/accuracy</code></td><td><code>show results</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Built-in Functions</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Functions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Math</td><td><code>sqrt, pow, abs, sin, cos, tan, log, exp, floor, ceil, round, min, max, random</code></td></tr>
+                            <tr><td>Statistics</td><td><code>mean, sum, std, variance, median, mode, range, count</code></td></tr>
+                            <tr><td>Array</td><td><code>sort, reverse, unique, flatten, head, tail, zip, len</code></td></tr>
+                            <tr><td>String</td><td><code>upper, lower, trim, split, join, replace, includes, len</code></td></tr>
+                            <tr><td>Data Manipulation</td><td><code>filter, map, reduce, each, find, every, some, where, limit, offset, sample, shuffle</code></td></tr>
+                            <tr><td>Column Operations</td><td><code>column, columns, select, where, pluck, distinct, union, intersection, difference</code></td></tr>
+                            <tr><td>Normalization</td><td><code>normalize, denormalize, normalize_array, denormalize_array</code></td></tr>
+                            <tr><td>Conversion</td><td><code>to_number, to_string, to_array</code></td></tr>
+                            <tr><td>Random</td><td><code>rand_int, rand_float, rand_choice</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Data Manipulation Examples</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">data_functions.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cm">// Load CSV data</span>
+<span class="kw">data csv</span> <span class="str">"houses.csv"</span>
+
+<span class="cm">// Filter data</span>
+<span class="kw">let</span> numbers = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>, <span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>, <span class="num">10</span>]
+<span class="kw">let</span> evens = <span class="fn">filter</span>(numbers, <span class="kw">fn</span>(x) { <span class="kw">return</span> x % <span class="num">2</span> == <span class="num">0</span> })
+<span class="fn">print</span>(<span class="str">"Evens: "</span> + evens)
+
+<span class="cm">// Map values</span>
+<span class="kw">let</span> doubled = <span class="fn">map</span>(numbers, <span class="kw">fn</span>(x) { <span class="kw">return</span> x * <span class="num">2</span> })
+<span class="fn">print</span>(<span class="str">"Doubled: "</span> + doubled)
+
+<span class="cm">// Statistics</span>
+<span class="fn">print</span>(<span class="str">"Mean: "</span> + <span class="fn">mean</span>(numbers))
+<span class="fn">print</span>(<span class="str">"Std Dev: "</span> + <span class="fn">std</span>(numbers))</code></pre>
+                </div>
+            </section>
+
+            <!-- TensorFlow.js Bridge -->
+            <section id="tensorflow">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>TensorFlow.js Bridge</span>
+                </div>
+                <h1>TensorFlow.js Bridge</h1>
+
+                <p>MEX skills transfer directly to TensorFlow.js.</p>
+
+                <h3>Generate TF.js Code</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">terminal</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>node mex.js --generate my_model.mx</code></pre>
+                </div>
+
+                <h3>Side-by-Side Comparison</h3>
+                <div class="comparison">
+                    <div class="comparison-side">
+                        <div class="comparison-header">MEX</div>
+                        <pre><code><span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">2</span>)
+  (<span class="num">2</span>, <span class="num">4</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">100</span> epochs
+<span class="kw">predict</span> <span class="num">5</span></code></pre>
+                    </div>
+                    <div class="comparison-side">
+                        <div class="comparison-header">TensorFlow.js</div>
+                        <pre><code><span class="kw">const</span> xs = tf.<span class="fn">tensor2d</span>([[<span class="num">1</span>],[<span class="num">2</span>]]);
+<span class="kw">const</span> ys = tf.<span class="fn">tensor2d</span>([[<span class="num">2</span>],[<span class="num">4</span>]]);
+
+<span class="kw">const</span> model = tf.<span class="fn">sequential</span>();
+model.<span class="fn">add</span>(tf.layers.<span class="fn">dense</span>({
+  <span class="num">units</span>: <span class="num">1</span>,
+  <span class="num">activation</span>: <span class="str">'linear'</span>
+}));
+
+<span class="kw">await</span> model.<span class="fn">fit</span>(xs, ys, {<span class="num">epochs</span>: <span class="num">100</span>});
+model.<span class="fn">predict</span>(tf.<span class="fn">tensor2d</span>([[<span class="num">5</span>]]));</code></pre>
+                    </div>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">🔗 Skill Transfer</div>
+                    <p>The concepts are identical: data, models, training, prediction. MEX uses simpler syntax so you can focus on <strong>understanding</strong> before <strong>implementation</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Examples -->
+            <section id="examples">
+                <div class="breadcrumb">
+                    <a href="#">Docs</a> / <span>Examples</span>
+                </div>
+                <h1>Examples</h1>
+
+                <p>Complete examples to learn from.</p>
+
+                <h3>Linear Regression</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">linear.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt">## Predict house prices from size</span>
+
+<span class="kw">data points</span>
+  (<span class="num">1000</span>, <span class="num">200</span>)
+  (<span class="num">1500</span>, <span class="num">250</span>)
+  (<span class="num">2000</span>, <span class="num">300</span>)
+  (<span class="num">2500</span>, <span class="num">350</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">200</span> epochs
+
+<span class="kw">predict</span> <span class="num">3000</span>
+<span class="kw">show results</span>
+<span class="kw">show accuracy</span></code></pre>
+                </div>
+
+                <h3>Classification</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">classify.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt">## Predict pass/fail from study hours</span>
+
+<span class="kw">data points</span>
+  (<span class="num">1</span>, <span class="num">0</span>)
+  (<span class="num">2</span>, <span class="num">0</span>)
+  (<span class="num">3</span>, <span class="num">0</span>)
+  (<span class="num">4</span>, <span class="num">1</span>)
+  (<span class="num">5</span>, <span class="num">1</span>)
+  (<span class="num">6</span>, <span class="num">1</span>)
+
+<span class="kw">model simple</span>
+<span class="kw">train</span> <span class="num">300</span> epochs
+
+<span class="cmt"># Would 3.5 hours be enough?</span>
+<span class="kw">predict</span> <span class="num">3.5</span>
+<span class="kw">show results</span></code></pre>
+                </div>
+
+                <h3>With Math Functions</h3>
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">math.mx</span>
+                        <button class="code-block-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code><span class="cmt">## Use built-in math</span>
+
+<span class="kw">let</span> x = <span class="num">16</span>
+<span class="kw">let</span> root = <span class="fn">sqrt</span>(x)
+<span class="fn">print</span>(<span class="str">"Square root of "</span> + x + <span class="str">" is "</span> + root)
+
+<span class="kw">let</span> angle = <span class="num">0</span>
+<span class="kw">let</span> s = <span class="fn">sin</span>(angle)
+<span class="fn">print</span>(<span class="str">"sin(0) = "</span> + s)</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        const searchData = [
+            { title: 'Introduction', path: 'Getting Started > Introduction', id: 'introduction' },
+            { title: 'Installation', path: 'Getting Started > Installation', id: 'installation' },
+            { title: 'Quick Start', path: 'Getting Started > Quick Start', id: 'quickstart' },
+            { title: 'What is MEX?', path: 'Core Concepts > What is MEX?', id: 'what-is-mex' },
+            { title: 'MEX vs Normal Packages', path: 'Core Concepts > MEX vs Normal Packages', id: 'mex-vs-normal' },
+            { title: 'Data', path: 'Core Concepts > Data', id: 'data' },
+            { title: 'Models', path: 'Core Concepts > Models', id: 'models' },
+            { title: 'Training', path: 'Core Concepts > Training', id: 'training' },
+            { title: 'Prediction', path: 'Core Concepts > Prediction', id: 'prediction' },
+            { title: 'Variables', path: 'Language > Variables', id: 'variables' },
+            { title: 'Functions', path: 'Language > Functions', id: 'functions' },
+            { title: 'Loops', path: 'Language > Loops', id: 'loops' },
+            { title: 'Conditionals', path: 'Language > Conditionals', id: 'conditionals' },
+            { title: 'Math Functions', path: 'Language > Math Functions', id: 'math' },
+            { title: 'Import/Export', path: 'Language > Import/Export', id: 'imports' },
+            { title: 'Lessons', path: 'Learning > Lessons', id: 'lessons' },
+            { title: 'Challenges', path: 'Learning > Challenges', id: 'challenges' },
+            { title: 'Achievements', path: 'Learning > Achievements', id: 'achievements' },
+            { title: 'Syntax Reference', path: 'Reference > Syntax Reference', id: 'syntax' },
+            { title: 'TensorFlow.js Bridge', path: 'Reference > TensorFlow.js Bridge', id: 'tensorflow' },
+            { title: 'Examples', path: 'Reference > Examples', id: 'examples' },
+        ];
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const matches = searchData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.path.toLowerCase().includes(query)
+            );
+
+            if (matches.length > 0) {
+                searchResults.innerHTML = matches.map(item => `
+                    <div class="search-result" onclick="navigateTo('${item.id}')">
+                        <div class="search-result-title">${highlightMatch(item.title, query)}</div>
+                        <div class="search-result-path">${item.path}</div>
+                    </div>
+                `).join('');
+                searchResults.classList.add('active');
+            } else {
+                searchResults.innerHTML = `
+                    <div class="search-result">
+                        <div class="search-result-title">No results found</div>
+                    </div>
+                `;
+                searchResults.classList.add('active');
+            }
+        });
+
+        function highlightMatch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        function navigateTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                searchResults.classList.remove('active');
+                searchInput.value = '';
+                
+                // Update active sidebar link
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // Keyboard shortcut (Cmd/Ctrl + K)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                searchResults.classList.remove('active');
+                searchInput.blur();
+            }
+        });
+
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block') || button.closest('pre');
+            const code = codeBlock.querySelector('code').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Active sidebar link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

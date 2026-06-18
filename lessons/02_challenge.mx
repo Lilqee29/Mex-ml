@@ -1,0 +1,96 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 2 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+##  Complete the challenges below.
+##  Run: node mex.js lessons/02_challenge.mx
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 2 CHALLENGE: Finding Patterns")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Ice Cream Sales ────────────────────
+##
+## Data: temperature vs ice cream sales
+##   (20, 50)
+##   (25, 80)
+##   (30, 110)
+##   (35, 140)
+##
+## Steps:
+##   1. Load the data
+##   2. Create a model
+##   3. Train for 300 epochs
+##   4. Predict sales for temperature = 40
+##   5. Show results and accuracy
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: Ice Cream Sales")
+print("─────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 2: Compare Training ───────────────────
+##
+## Train two models on the same data:
+##   Model A: 100 epochs
+##   Model B: 500 epochs
+##
+## Which has lower error?
+## Why?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Compare Training")
+print("──────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 3: New Pattern ────────────────────────
+##
+## Data: age vs shoe size (for kids)
+##   (2, 8)
+##   (5, 12)
+##   (8, 3)
+##   (12, 6)
+##
+## Wait — this doesn't look linear!
+## What happens when you train?
+## Can the model find a pattern?
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 3: Non-Linear Pattern")
+print("─────────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+## ── CHALLENGE 4: Design Your Own ────────────────────
+##
+## Create your own dataset:
+##   1. Think of a real-world relationship
+##   2. Create at least 4 data points
+##   3. Train a model
+##   4. Make a prediction
+##   5. Report your findings
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 4: Design Your Own")
+print("─────────────────────────────")
+
+## YOUR CODE HERE:
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

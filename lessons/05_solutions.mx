@@ -1,0 +1,71 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 5 — SOLUTIONS
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 5 SOLUTIONS")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Clean This Data ───────────────────
+
+print("CHALLENGE 1: Clean This Data")
+print("─────────────────────────────")
+
+data points
+  (10, 20)
+  (15, 25)
+  (20, 30)
+  (25, 35)
+
+model simple
+train 300 epochs
+
+predict 18
+
+show results
+show accuracy
+
+print("")
+
+## ── CHALLENGE 2: Normalize ─────────────────────────
+
+print("CHALLENGE 2: Normalize")
+print("──────────────────────")
+
+let min_val = 100
+let max_val = 400
+
+let normalized_250 = (250 - min_val) / (max_val - min_val)
+print("250 normalized: " + normalized_250)
+
+let normalized_350 = (350 - min_val) / (max_val - min_val)
+print("350 normalized: " + normalized_350)
+
+print("")
+
+## ── CHALLENGE 3: Real Dataset ──────────────────────
+
+print("CHALLENGE 3: Real Dataset")
+print("──────────────────────────")
+
+## Example: Student data with different scales
+data points
+  (0.2, 0.3)
+  (0.4, 0.5)
+  (0.6, 0.7)
+  (0.8, 0.9)
+
+model simple
+train 300 epochs
+
+predict 0.5
+
+show results
+show accuracy
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  SOLUTIONS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

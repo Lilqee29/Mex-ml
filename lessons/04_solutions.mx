@@ -1,0 +1,113 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 4 — SOLUTIONS
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 4 SOLUTIONS")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: XOR Problem ───────────────────────
+
+print("CHALLENGE 1: XOR Problem")
+print("─────────────────────────")
+
+data points
+  (0, 0)
+  (0, 1)
+  (1, 0)
+  (1, 1)
+
+model simple
+train 500 epochs
+
+predict 0
+predict 0.5
+predict 1
+
+show results
+show accuracy
+
+print("")
+print("Note: XOR is hard for linear models!")
+print("The network may not learn perfectly.")
+
+print("")
+
+## ── CHALLENGE 2: Experiment with Epochs ────────────
+
+print("CHALLENGE 2: Experiment with Epochs")
+print("─────────────────────────────────────")
+
+## Model A: 100 epochs
+print("Model A: 100 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 100 epochs
+show accuracy
+
+print("")
+
+## Model B: 500 epochs
+print("Model B: 500 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 500 epochs
+show accuracy
+
+print("")
+
+## Model C: 1000 epochs
+print("Model C: 1000 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 1000 epochs
+show accuracy
+
+print("")
+print("Finding: More epochs usually = lower error")
+print("But after a point, improvements get smaller.")
+
+print("")
+
+## ── CHALLENGE 3: Design Your Own ────────────────────
+
+print("CHALLENGE 3: Design Your Own")
+print("─────────────────────────────")
+
+## Example: Temperature conversion (Celsius to Fahrenheit)
+data points
+  (0, 32)
+  (20, 68)
+  (37, 98.6)
+  (100, 212)
+
+model simple
+train 500 epochs
+
+predict 25
+predict 50
+
+show results
+show accuracy
+
+print("")
+print("Pattern: F = C × 1.8 + 32")
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  SOLUTIONS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

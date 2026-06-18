@@ -1,0 +1,95 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 6 — SOLUTIONS
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 6 SOLUTIONS")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Final Project ─────────────────────
+
+print("CHALLENGE 1: Final Project")
+print("───────────────────────────")
+
+## Example: Predicting exam scores
+## Problem: Predict if student will pass based on study hours
+
+print("Problem: Predict exam pass/fail from study hours")
+print("")
+
+data points
+  (1, 0)
+  (2, 0)
+  (3, 0)
+  (4, 1)
+  (5, 1)
+  (6, 1)
+
+model simple
+train 300 epochs
+
+## Make predictions
+predict 2.5
+predict 4.5
+
+show results
+show accuracy
+
+print("")
+print("Findings:")
+print("  - Students studying < 3.5 hours likely fail")
+print("  - Students studying > 3.5 hours likely pass")
+print("")
+
+## ── CHALLENGE 2: Compare Models ────────────────────
+
+print("CHALLENGE 2: Compare Models")
+print("────────────────────────────")
+
+## Compare 100 vs 500 vs 1000 epochs
+
+print("Model A: 100 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 100 epochs
+show accuracy
+
+print("")
+
+print("Model B: 500 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 500 epochs
+show accuracy
+
+print("")
+
+print("Model C: 1000 epochs")
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+model simple
+train 1000 epochs
+show accuracy
+
+print("")
+print("Findings:")
+print("  - More epochs usually = lower error")
+print("  - But after a point, improvements are small")
+print("  - More data helps the model learn better")
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  SOLUTIONS COMPLETE!")
+print("═══════════════════════════════════════════════════════")

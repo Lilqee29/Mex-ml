@@ -1,0 +1,33 @@
+# Archive (internal development files)
+archive/
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temp files
+*.tmp
+*.temp
+*.log
+
+# Dev artifacts
+dist/
+build/
+.env
+.env.local
+
+# Old playground (replaced by playground/ folder)
+playground.html
+docs.html
+
+# Saved model files
+my_model.json

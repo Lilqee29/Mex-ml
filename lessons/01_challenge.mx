@@ -1,0 +1,100 @@
+## ═══════════════════════════════════════════════════════
+##  MEX LESSON 1 — CHALLENGE
+## ═══════════════════════════════════════════════════════
+##  Complete the challenges below.
+##  Run: node mex.js lessons/01_challenge.mx
+## ═══════════════════════════════════════════════════════
+
+print("═══════════════════════════════════════════════════════")
+print("  LESSON 1 CHALLENGE: What is Data?")
+print("═══════════════════════════════════════════════════════")
+print("")
+
+## ── CHALLENGE 1: Study Data ─────────────────────────
+##
+## Create a dataset showing hours studied vs test scores.
+## Use at least 4 data points.
+## Show the data.
+##
+## Expected pattern: more hours → higher score
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 1: Study Data")
+print("───────────────────────")
+
+## YOUR CODE HERE:
+## data points
+##   (hours1, score1)
+##   (hours2, score2)
+##   ...
+
+## show data
+
+print("")
+
+## ── CHALLENGE 2: Temperature Data ───────────────────
+##
+## Create a dataset for (celsius, fahrenheit).
+## The formula is: fahrenheit = celsius × 1.8 + 32
+## Make at least 4 points that follow this formula.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 2: Temperature Data")
+print("─────────────────────────────")
+
+## YOUR CODE HERE:
+## data points
+##   (0, 32)     ← water freezes
+##   (100, 212)  ← water boils
+##   ...
+
+## show data
+
+print("")
+
+## ── CHALLENGE 3: Predict ────────────────────────────
+##
+## Using your study data from Challenge 1:
+## If the pattern is linear, what score would
+## someone get for 6 hours of study?
+##
+## Calculate it manually using the pattern.
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 3: Predict")
+print("────────────────────")
+
+## YOUR CODE HERE:
+## let predicted_score = ...
+## print("Predicted score for 6 hours: " + predicted_score)
+
+print("")
+
+## ── CHALLENGE 4: Real World ─────────────────────────
+##
+## Think of a real-world example with features and labels.
+## Describe it in print statements.
+##
+## Examples:
+##   - Feature: weight, Label: height
+##   - Feature: temperature, Label: ice cream sales
+##   - Feature: age, Label: shoe size
+##
+## ─────────────────────────────────────────────────────
+
+print("CHALLENGE 4: Real World Example")
+print("────────────────────────────────")
+
+## YOUR CODE HERE:
+## print("Feature: ...")
+## print("Label: ...")
+## print("Why this matters: ...")
+
+print("")
+
+print("═══════════════════════════════════════════════════════")
+print("  CHALLENGE COMPLETE!")
+print("═══════════════════════════════════════════════════════")

@@ -1,0 +1,19 @@
+## Deliberately broken file to test smart debug
+## This should trigger "Possible Overfitting" warning
+
+data points
+  (1, 2)
+  (2, 4)
+  (3, 6)
+
+## Huge model for 3 data points = overfitting
+model sequential
+dense 64 relu
+dense 32 relu
+dense 1 linear
+
+## Train way too long
+train 1000 epochs
+
+predict 4
+show results

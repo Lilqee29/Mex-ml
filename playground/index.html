@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEX Playground — Learn ML by Writing Code</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ═══ Top Header ═══════════════════════════════════ -->
+<header class="top-header">
+  <div class="logo">
+    <div class="logo-icon">M</div>
+    <h1>MEX <span>Playground</span></h1>
+  </div>
+
+  <div class="header-center">
+    <!-- Examples Dropdown -->
+    <div class="dropdown">
+      <button class="btn" onclick="toggleDropdown('examplesMenu')">Examples ▾</button>
+      <div class="dropdown-menu" id="examplesMenu">
+        <button class="dropdown-item" onclick="loadExample('hello')">
+          <span class="label">Hello World</span><span class="desc">Your first MEX program</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('linear')">
+          <span class="label">Linear Regression</span><span class="desc">Learn y = 2x</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('classify')">
+          <span class="label">Classification</span><span class="desc">OR gate neural network</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('neural')">
+          <span class="label">Deep Network</span><span class="desc">Multi-layer with dropout</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('dice')">
+          <span class="label">Dice & Coin Flip</span><span class="desc">Random generation</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('loops')">
+          <span class="label">Loops & Math</span><span class="desc">For, while, functions</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('arrays')">
+          <span class="label">Arrays</span><span class="desc">Create, sort, access</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('stats')">
+          <span class="label">Statistics</span><span class="desc">Mean, sum, min, max</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('boolean')">
+          <span class="label">Boolean Logic</span><span class="desc">true, false, and, or, not</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('math')">
+          <span class="label">Math Functions</span><span class="desc">sqrt, pow, abs, floor</span>
+        </button>
+        <button class="dropdown-item" onclick="loadExample('pipeline')">
+          <span class="label">Full Pipeline</span><span class="desc">Data -> Model -> Train -> Predict</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tools Dropdown -->
+    <div class="dropdown">
+      <button class="btn" onclick="toggleDropdown('toolsMenu')">Tools ▾</button>
+      <div class="dropdown-menu" id="toolsMenu">
+        <button class="dropdown-item" onclick="importCSV(); closeAllDropdowns()">
+          <span class="label">Import CSV</span><span class="desc">Load .csv file as data points</span>
+        </button>
+        <button class="dropdown-item" onclick="exportFile(); closeAllDropdowns()">
+          <span class="label">Export .mx</span><span class="desc">Download current file</span>
+        </button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" onclick="openSyntax(); closeAllDropdowns()">
+          <span class="label">Syntax Reference</span><span class="desc">All MEX syntax</span>
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-run" onclick="runCode()" title="Ctrl+Enter">▶ Run</button>
+  </div>
+
+  <div class="header-right">
+    <button class="btn btn-sm" onclick="clearOutput()">Clear</button>
+  </div>
+</header>
+
+<!-- ═══ File Tabs ════════════════════════════════════ -->
+<div class="tab-bar" id="tabBar"></div>
+
+<!-- ═══ Main Layout ══════════════════════════════════ -->
+<div class="main">
+
+  <!-- Editor Panel -->
+  <div class="editor-panel">
+    <div class="editor-wrapper">
+      <!-- Syntax-highlighted overlay (display layer) -->
+      <pre class="highlight-layer" id="highlightLayer"><code id="highlightCode"></code></pre>
+      <!-- Transparent textarea (input layer) -->
+      <textarea id="editor" class="editor-input" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+    </div>
+  </div>
+
+  <!-- Output Panel -->
+  <div class="output-panel">
+    <div class="output-header">
+      <h3>Output</h3>
+      <div class="output-status">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Ready</span>
+      </div>
+    </div>
+    <div id="output"></div>
+  </div>
+</div>
+
+<!-- ═══ Syntax Reference Overlay ════════════════════ -->
+<div class="syntax-overlay" id="syntaxOverlay">
+  <div class="syntax-page" style="position:relative">
+    <button class="syntax-close" onclick="closeSyntax()">&times;</button>
+    <h2>MEX Syntax Reference</h2>
+
+    <h3>Variables</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>let x = 42</code><span>Number</span></div>
+      <div class="syntax-card"><code>let name = "hello"</code><span>String</span></div>
+      <div class="syntax-card"><code>let flag = true</code><span>Boolean</span></div>
+      <div class="syntax-card"><code>let arr = [1, 2, 3]</code><span>Array</span></div>
+    </div>
+
+    <h3>Control Flow</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>if (x > 5) { } else { }</code><span>Conditional</span></div>
+      <div class="syntax-card"><code>for i in range(5) { }</code><span>For loop</span></div>
+      <div class="syntax-card"><code>while (x > 0) { }</code><span>While loop</span></div>
+      <div class="syntax-card"><code>fn add(a, b) { return a+b }</code><span>Function</span></div>
+    </div>
+
+    <h3>ML Commands</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>data points<br>  (1, 2)<br>  (3, 4)</code><span>Load data</span></div>
+      <div class="syntax-card"><code>model simple</code><span>Linear model</span></div>
+      <div class="syntax-card"><code>model sequential<br>  dense 8 relu<br>  dense 1 sigmoid</code><span>Neural network</span></div>
+      <div class="syntax-card"><code>train 200 epochs</code><span>Train model</span></div>
+      <div class="syntax-card"><code>predict 5</code><span>Get prediction</span></div>
+      <div class="syntax-card"><code>show results</code><span>Display predictions</span></div>
+    </div>
+
+    <h3>Math Functions</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>sqrt(x), pow(x,y)</code><span>Square root, power</span></div>
+      <div class="syntax-card"><code>abs(x), floor(x)</code><span>Absolute, round down</span></div>
+      <div class="syntax-card"><code>ceil(x), round(x)</code><span>Round up, round</span></div>
+      <div class="syntax-card"><code>random()</code><span>Random 0-1</span></div>
+    </div>
+
+    <h3>Array Functions</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>len(arr), sort(arr)</code><span>Length, sort</span></div>
+      <div class="syntax-card"><code>map(arr, fn)</code><span>Transform each</span></div>
+      <div class="syntax-card"><code>filter(arr, fn)</code><span>Keep matches</span></div>
+      <div class="syntax-card"><code>reduce(arr, fn, 0)</code><span>Combine to single</span></div>
+    </div>
+
+    <h3>Operators</h3>
+    <div class="syntax-grid">
+      <div class="syntax-card"><code>+ - * / %</code><span>Arithmetic</span></div>
+      <div class="syntax-card"><code>== != &lt; &gt; &lt;= &gt;=</code><span>Comparison</span></div>
+      <div class="syntax-card"><code>and or not</code><span>Logical</span></div>
+      <div class="syntax-card"><code>arr[0]</code><span>Array access</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Scripts (order matters) ═════════════════════ -->
+<script src="js/highlighter.js"></script>
+<script src="js/lexer.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/nn.js"></script>
+<script src="js/interpreter.js"></script>
+<script src="js/examples.js"></script>
+<script src="js/autocomplete.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
