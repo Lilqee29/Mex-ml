@@ -58,6 +58,9 @@ if (args[0] === '--help' || args[0] === '-h') {
   console.log('    mex packages                   List installed packages');
   console.log('    mex search <query>             Search for packages');
   console.log('');
+  console.log('  IDE Integration:');
+  console.log('    mex --install-extension        Install VS Code syntax highlighting');
+  console.log('');
   console.log('  Info:');
   console.log('    mex --version                  Show version');
   console.log('    mex --help                     Show this help');
@@ -120,10 +123,49 @@ if (args.length === 0) {
   console.log('    mex packages                   List installed packages');
   console.log('    mex search <query>             Search for packages');
   console.log('');
+  console.log('  IDE Integration:');
+  console.log('    mex --install-extension        Install VS Code syntax highlighting');
+  console.log('');
   console.log('  Info:');
   console.log('    mex --version                  Show version');
   console.log('    mex --help                     Show all commands');
   console.log('');
+  process.exit(0);
+}
+
+// ── --install-extension ──────────────────────────────
+// Installs the VS Code extension for .mx syntax highlighting
+if (args[0] === '--install-extension' || args[0] === '--install-ext') {
+  const { execSync } = require('child_process');
+  const vsixPath = path.join(__dirname, 'mex-ml-syntax-0.1.0.vsix');
+
+  if (!fs.existsSync(vsixPath)) {
+    console.log('');
+    console.log('  ❌ Extension file not found: mex-ml-syntax-0.1.0.vsix');
+    console.log('  Try reinstalling mex-ml: npm install -g mex-ml');
+    console.log('');
+    process.exit(1);
+  }
+
+  console.log('');
+  console.log('  🔧 Installing MEX-ML VS Code extension...');
+  console.log('');
+
+  try {
+    execSync(`code --install-extension "${vsixPath}"`, { stdio: 'inherit' });
+    console.log('');
+    console.log('  ✅ Extension installed! Open any .mx file to see syntax colors.');
+    console.log('  If colors don\'t appear, restart VS Code or select the MEX-ML Dark theme.');
+    console.log('');
+  } catch (err) {
+    console.log('  ❌ Could not install extension automatically.');
+    console.log('');
+    console.log('  Manual install:');
+    console.log('    1. Open VS Code');
+    console.log('    2. Press Ctrl+Shift+P → "Extensions: Install from VSIX..."');
+    console.log(`    3. Select: ${vsixPath}`);
+    console.log('');
+  }
   process.exit(0);
 }
 

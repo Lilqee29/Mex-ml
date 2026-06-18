@@ -1,0 +1,162 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicolo-ribaudo/vscode-textmate/main/test-cases/schemas/tmlanguage.schema.json",
+  "name": "MEX-ML",
+  "scopeName": "source.mx",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#ml-keywords" },
+    { "include": "#types" },
+    { "include": "#booleans" },
+    { "include": "#builtins" },
+    { "include": "#function-call" },
+    { "include": "#operators" },
+    { "include": "#brackets" },
+    { "include": "#dot" },
+    { "include": "#comma" },
+    { "include": "#colon" },
+    { "include": "#identifiers" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-hash.mx",
+          "match": "##.*$"
+        },
+        {
+          "name": "comment.line.single-hash.mx",
+          "match": "#(?!#).*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.mx",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.mx" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.mx" } },
+          "patterns": [
+            { "name": "constant.character.escape.mx", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.single.mx",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.mx" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.mx" } },
+          "patterns": [
+            { "name": "constant.character.escape.mx", "match": "\\\\." }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.mx",
+          "match": "-?[0-9]+\\.[0-9]+"
+        },
+        {
+          "name": "constant.numeric.integer.mx",
+          "match": "-?[0-9]+"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.mx",
+          "match": "\\b(let|if|else|elif|for|in|while|fn|return|import|as|break|continue|new|class|this)\\b"
+        }
+      ]
+    },
+    "ml-keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.ml.mx",
+          "match": "\\b(data|points|csv|model|simple|sequential|dense|dropout|train|epochs|predict|show|results|save|load|activation|sigmoid|relu|tanh|linear|softmax)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.mx",
+          "match": "\\b(number|string|boolean|array|object|function|void|null|undefined)\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.true.mx",
+          "match": "\\b(true)\\b"
+        },
+        {
+          "name": "constant.language.boolean.false.mx",
+          "match": "\\b(false)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.mx",
+          "match": "\\b(print|sqrt|pow|abs|floor|ceil|round|random|random_int|min|max|sum|mean|median|mode|variance|std|length|len|push|pop|sort|reverse|includes|indexOf|join|slice|split|replace|toUpperCase|toLowerCase|trim|startsWith|endsWith|charAt|substring|keys|values|entries|has|get|set|range|map|filter|reduce|forEach|type|str|num|int|float|bool|arr|obj|head|tail|describe|column_names|shape|unique|value_counts|sort_by|filter_by|to_json|from_json|save_csv|mean_squared_error|mean_absolute_error|distance|euclidean|dot_product|cosine_similarity|normalize|standardize|fill_missing|date|time|now|format_date|parse_date|json_parse|json_stringify|file_read|file_write|plot|bar_chart|line_chart|scatter_plot|histogram|pie_chart)\\b"
+        }
+      ]
+    },
+    "function-call": {
+      "patterns": [
+        {
+          "name": "entity.name.function.mx",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        { "name": "keyword.operator.comparison.mx", "match": "(==|!=|>=|<=|>|<)" },
+        { "name": "keyword.operator.logical.mx", "match": "(&&|\\|\\||!)" },
+        { "name": "keyword.operator.assignment.mx", "match": "(\\+=|-=|\\*=|/=|=)" },
+        { "name": "keyword.operator.arithmetic.mx", "match": "(\\+|-|\\*|/|%|\\^)" }
+      ]
+    },
+    "brackets": {
+      "patterns": [
+        { "name": "punctuation.bracket.round.mx", "match": "[()]" },
+        { "name": "punctuation.bracket.square.mx", "match": "[\\[\\]]" },
+        { "name": "punctuation.bracket.curly.mx", "match": "[{}]" }
+      ]
+    },
+    "dot": {
+      "patterns": [
+        { "name": "punctuation.accessor.dot.mx", "match": "\\." }
+      ]
+    },
+    "comma": {
+      "patterns": [
+        { "name": "punctuation.separator.comma.mx", "match": "," }
+      ]
+    },
+    "colon": {
+      "patterns": [
+        { "name": "punctuation.separator.type.mx", "match": ":" }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.other.mx",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

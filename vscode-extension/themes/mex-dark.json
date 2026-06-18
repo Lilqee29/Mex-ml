@@ -1,0 +1,100 @@
+{
+  "name": "MEX-ML Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e1e1e",
+    "editor.foreground": "#d4d4d4",
+    "editor.lineHighlightBackground": "#2a2d2e",
+    "editor.selectionBackground": "#264f78",
+    "editorCursor.foreground": "#aeafad",
+    "editorLineNumber.foreground": "#858585",
+    "editorLineNumber.activeForeground": "#c6c6c6"
+  },
+  "tokenColors": [
+    {
+      "name": "Comments",
+      "scope": ["comment.line.double-hash.mx", "comment.line.single-hash.mx"],
+      "settings": { "foreground": "#6a9955", "fontStyle": "italic" }
+    },
+    {
+      "name": "Strings",
+      "scope": ["string.quoted.double.mx", "string.quoted.single.mx"],
+      "settings": { "foreground": "#ce9178" }
+    },
+    {
+      "name": "Escape characters",
+      "scope": ["constant.character.escape.mx"],
+      "settings": { "foreground": "#d7ba7d" }
+    },
+    {
+      "name": "Numbers",
+      "scope": ["constant.numeric.float.mx", "constant.numeric.integer.mx"],
+      "settings": { "foreground": "#b5cea8" }
+    },
+    {
+      "name": "Keywords (let, if, else, for, fn, return, etc.)",
+      "scope": ["keyword.control.mx"],
+      "settings": { "foreground": "#c586c0" }
+    },
+    {
+      "name": "ML Keywords (data, model, train, predict, dense, etc.)",
+      "scope": ["keyword.other.ml.mx"],
+      "settings": { "foreground": "#569cd6" }
+    },
+    {
+      "name": "Types (number, string, boolean, array, etc.)",
+      "scope": ["support.type.mx"],
+      "settings": { "foreground": "#4ec9b0" }
+    },
+    {
+      "name": "Booleans (true, false)",
+      "scope": ["constant.language.boolean.true.mx", "constant.language.boolean.false.mx"],
+      "settings": { "foreground": "#569cd6" }
+    },
+    {
+      "name": "Built-in functions (print, sqrt, mean, etc.)",
+      "scope": ["support.function.builtin.mx"],
+      "settings": { "foreground": "#4ec9b0" }
+    },
+    {
+      "name": "Function calls",
+      "scope": ["entity.name.function.mx"],
+      "settings": { "foreground": "#dcdcaa" }
+    },
+    {
+      "name": "Comparison operators",
+      "scope": ["keyword.operator.comparison.mx"],
+      "settings": { "foreground": "#d4d4d4" }
+    },
+    {
+      "name": "Logical operators",
+      "scope": ["keyword.operator.logical.mx"],
+      "settings": { "foreground": "#569cd6" }
+    },
+    {
+      "name": "Assignment operators",
+      "scope": ["keyword.operator.assignment.mx"],
+      "settings": { "foreground": "#d4d4d4" }
+    },
+    {
+      "name": "Arithmetic operators",
+      "scope": ["keyword.operator.arithmetic.mx"],
+      "settings": { "foreground": "#d4d4d4" }
+    },
+    {
+      "name": "Brackets",
+      "scope": ["punctuation.bracket.round.mx", "punctuation.bracket.square.mx", "punctuation.bracket.curly.mx"],
+      "settings": { "foreground": "#d4d4d4" }
+    },
+    {
+      "name": "Dot accessor",
+      "scope": ["punctuation.accessor.dot.mx"],
+      "settings": { "foreground": "#d4d4d4" }
+    },
+    {
+      "name": "Variables",
+      "scope": ["variable.other.mx"],
+      "settings": { "foreground": "#9cdcfe" }
+    }
+  ]
+}
