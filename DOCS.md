@@ -423,10 +423,10 @@ print(double(5))  ## 10
 ### Higher-Order Functions
 
 ```mex
-fn apply_to_each(arr, fn) {
+fn apply_to_each(arr, transform) {
   let result = []
   for i in range(0, len(arr)) {
-    result = result + [fn(arr[i])]
+    result = result + [transform(arr[i])]
   }
   return result
 }
