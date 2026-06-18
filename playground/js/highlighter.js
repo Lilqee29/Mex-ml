@@ -5,22 +5,22 @@
  */
 
 const MEX_COLORS = {
-  keyword:    '#ff6b6b',  // red — let, if, else, for, while, fn, return, true, false
-  mlKeyword:  '#ffd43b',  // yellow — data, model, train, predict, dense, dropout, epochs
-  number:     '#69db7c',  // green — 42, 3.14, -1
-  string:     '#da77f2',  // purple — "hello", 'hello'
-  comment:    '#868e96',  // gray — ## comment
-  operator:   '#ff922b',  // orange — =, +, -, *, /, ==, !=, >, <, >=, <=
-  fn:         '#4dabf7',  // blue — print(), sqrt(), predict(), layer names
-  paren:      '#dee2e6',  // light — (), [], {}
-  property:   '#20c997',  // teal — obj.prop, obj.method()
-  builtin:    '#e599f7',  // pink — print, sqrt, pow, mean, sum, len, etc.
-  type:       '#ffd43b',  // yellow — number, string, boolean, array, object
-  boolean:    '#ff6b6b',  // red — true, false
-  dot:        '#dee2e6',  // light — .
-  comma:      '#dee2e6',  // light — ,
-  colon:      '#dee2e6',  // light — :
-  bracket:    '#dee2e6',  // light — (), [], {}
+  keyword:    '#c586c0',  // purple — let, if, else, for, while, fn, return
+  mlKeyword:  '#569cd6',  // blue — data, model, train, predict, dense, epochs
+  number:     '#b5cea8',  // light green — 42, 3.14, -1
+  string:     '#ce9178',  // orange — "hello", 'hello'
+  comment:    '#6a9955',  // green — ## comment
+  operator:   '#d4d4d4',  // white — =, +, -, *, /, ==, !=, >, <
+  fn:         '#dcdcaa',  // yellow — print(), sqrt(), user functions
+  builtin:    '#4ec9b0',  // teal/cyan — print, sqrt, pow, mean, sum, len
+  type:       '#4ec9b0',  // teal — number, string, boolean, array
+  boolean:    '#569cd6',  // blue — true, false
+  property:   '#9cdcfe',  // light blue — obj.prop
+  paren:      '#d4d4d4',  // white — (), [], {}
+  dot:        '#d4d4d4',  // white — .
+  comma:      '#d4d4d4',  // white — ,
+  colon:      '#d4d4d4',  // white — :
+  bracket:    '#d4d4d4',  // white — (), [], {}
 };
 
 // Token types for classification
@@ -108,12 +108,16 @@ function tokenizeMEXLine(line) {
       while (j < line.length && /[a-zA-Z0-9_$]/.test(line[j])) j++;
       const word = line.slice(i, j);
 
-      let type = 'fn'; // default: function call
-      if (MEX_KEYWORDS.has(word)) type = 'keyword';
+      // Check if this is followed by ( — it's a function call
+      let rest = line.slice(j).trimStart();
+      const isFunctionCall = rest.startsWith('(');
+
+      let type = isFunctionCall ? 'fn' : 'property'; // default: property or function call
+      if (word === 'true' || word === 'false') type = 'boolean';
+      else if (MEX_KEYWORDS.has(word)) type = 'keyword';
       else if (MEX_ML_KEYWORDS.has(word)) type = 'mlKeyword';
       else if (MEX_TYPES.has(word)) type = 'type';
       else if (MEX_BUILTINS.has(word)) type = 'builtin';
-      else if (word === 'true' || word === 'false') type = 'boolean';
 
       tokens.push({ type, value: word });
       i = j;
